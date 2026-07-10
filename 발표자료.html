@@ -173,14 +173,14 @@
   .oneliner b{color:var(--accent-soft);font-weight:700}
 
   /* ---- cover two-column layout ---- */
-  .cover-grid{display:grid;grid-template-columns:1fr 440px;align-items:stretch;gap:34px;width:100%;flex:1;min-height:0}
-  .cover-left{display:flex;flex-direction:column;justify-content:center;grid-column:1}
-  .cover-right{position:relative;grid-column:2}
+  .cover-grid{display:grid;grid-template-columns:440px 1fr;align-items:center;align-content:center;gap:34px;width:100%;flex:1;min-height:0}
+  .cover-left{display:flex;flex-direction:column;justify-content:center;grid-column:2}
+  .cover-right{position:relative;grid-column:1;height:540px}
   .app-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .cover-phone{width:280px;height:560px}
+  .cover-phone{width:280px;height:540px}
 
   /* app home screen inside the phone */
-  .phone-screen.app-screen{align-items:stretch;justify-content:flex-start;gap:14px;text-align:left;padding:40px 20px 20px;background:linear-gradient(180deg,#ffffff 0%,#fff3ee 100%)}
+  .phone-screen.app-screen{align-items:stretch;justify-content:flex-start;gap:13px;text-align:left;padding:32px 20px 18px;background:linear-gradient(180deg,#ffffff 0%,#fff3ee 100%)}
   .app-top{display:flex;flex-direction:column;align-items:center;gap:7px;margin-top:2px}
   .app-top .app-ico{width:70px;height:70px;border-radius:20px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 28px -10px rgba(255,110,95,.6)}
   .app-top .app-ico svg{width:37px;height:37px}
