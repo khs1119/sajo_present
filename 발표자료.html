@@ -308,12 +308,26 @@
   /* ============================================================
      DEV LIST
      ============================================================ */
-  .dev-list{display:flex;flex-direction:column;gap:18px;width:100%;align-self:flex-start;margin-top:4px}
-  .dev-item{display:flex;gap:20px;align-items:flex-start;background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:22px 26px}
+  .dev-list{display:flex;flex-direction:column;gap:16px;width:100%;align-self:flex-start;margin-top:4px}
+  .dev-item{display:flex;gap:20px;align-items:flex-start;background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:18px 26px}
   .dev-item .d-ico{font-size:28px;flex-shrink:0;width:58px;height:58px;border-radius:16px;background:var(--accent-glow);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center}
-  .dev-item h3{font-size:20px;font-weight:800;margin-bottom:6px;color:var(--ink)}
+  .dev-item h3{font-size:20px;font-weight:800;margin-bottom:5px;color:var(--ink)}
   .dev-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.6}
   .dev-item p b{color:var(--accent-soft);font-weight:700}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .mini-cell{background:rgba(255,255,255,.32);border:1px solid var(--line-soft);border-radius:12px;padding:9px 13px;display:flex;flex-direction:column;gap:5px}
+  .mini-cell .mc-name{font-size:10.5px;color:var(--ink-soft);font-weight:600;line-height:1.3}
+  .mini-cell .mc-row{display:flex;align-items:center;gap:8px}
+  .mini-cell .mc-track{flex:1;height:5px;border-radius:3px;background:rgba(120,60,50,.10)}
+  .mini-cell .mc-fill{height:100%;width:0;border-radius:0 3px 3px 0;background:var(--grad);transition:width 1.1s var(--ease)}
+  .mini-cell .mc-val{font-size:10.5px;font-weight:800;color:var(--accent-deep);white-space:nowrap;flex-shrink:0}
+  /* mini-cell gets its own pop-in reveal, distinct from the slide's fade-up */
+  .slide.active .mini-cell{animation:cellPop .48s var(--ease) both;animation-delay:var(--rvd,0s)}
+  @keyframes cellPop{
+    0%{opacity:0;transform:scale(.8) translateY(8px)}
+    62%{opacity:1;transform:scale(1.05) translateY(0)}
+    100%{opacity:1;transform:scale(1) translateY(0)}
+  }
 
   /* ============================================================
      STACK ROWS (hidden mission / limitations)
@@ -522,7 +536,28 @@
       <div class="dev-list">
         <div class="dev-item" data-rv>
           <div class="d-ico">🧠</div>
-          <div><h3>피부 예측 모델</h3><p>AI Hub 피부 데이터셋 활용(약 <b>10,000건 규모</b>) — 데이터 학습으로 <b>미래 피부 예측 신뢰도</b> 확보</p></div>
+          <div>
+            <h3>피부 예측 모델 개발을 위한 데이터 학습</h3>
+            <p>AI Hub 피부 데이터셋 활용(약 <b>355만 건 규모</b>) — 데이터 학습으로 <b>미래 피부 예측 신뢰도</b> 확보</p>
+            <div class="mini-grid">
+              <div class="mini-cell" data-rv>
+                <span class="mc-name">한국어 성능이 개선된 초거대AI 언어모델 개발 및 데이터</span>
+                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="100"></div></div><span class="mc-val"><span class="mc-num" data-target="3361404">0</span>건</span></div>
+              </div>
+              <div class="mini-cell" data-rv>
+                <span class="mc-name">한국인 피부상태 측정 데이터</span>
+                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="48"></div></div><span class="mc-val"><span class="mc-num" data-target="125424">0</span>건</span></div>
+              </div>
+              <div class="mini-cell" data-rv>
+                <span class="mc-name">안면 인식 에이징(aging) 이미지 데이터</span>
+                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="33.5"></div></div><span class="mc-val"><span class="mc-num" data-target="50250">0</span>건</span></div>
+              </div>
+              <div class="mini-cell" data-rv>
+                <span class="mc-name">스킨케어 성분-효능 추천 데이터</span>
+                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="8"></div></div><span class="mc-val"><span class="mc-num" data-target="10000">0</span>건</span></div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="dev-item" data-rv>
           <div class="d-ico">🎙️</div>
@@ -530,7 +565,7 @@
         </div>
         <div class="dev-item" data-rv>
           <div class="d-ico">🤖</div>
-          <div><h3>Claude API 연동 고도화</h3><p>일방향 설문 → 이전 답변을 기억하는 <b>양방향 대화</b>, 진단 결과 기반 <b>코스맥스 제품 맞춤 추천 + AI 코멘트</b> 자동 생성</p></div>
+          <div><h3>Claude API 연동 고도화</h3><p>일방향 설문 → 이전 답변을 기억하는 <b>양방향 대화</b><br>진단 결과 기반 <b>코스맥스 제품 맞춤 추천 + AI 코멘트</b> 자동 생성</p></div>
         </div>
       </div>
     </div>
@@ -856,6 +891,39 @@
 
   const slidenum = document.getElementById('slidenum');
 
+  // animate a number from 0 to its data-target, formatted with commas
+  function countUp(el, duration){
+    const target = parseInt(el.dataset.target, 10);
+    const t0 = performance.now();
+    function tick(now){
+      const p = Math.min((now - t0) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString('ko-KR');
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // grow each mini-cell's bar + count its number up, staggered to match its pop-in delay
+  function animateDataBars(slide){
+    slide.querySelectorAll('.mini-cell').forEach(cell=>{
+      const fill = cell.querySelector('.mc-fill');
+      const num = cell.querySelector('.mc-num');
+      const delay = (parseFloat(getComputedStyle(cell).animationDelay) || 0) * 1000;
+      if(fill){
+        fill.style.transition = 'none';
+        fill.style.width = '0%';
+        void fill.offsetWidth;      // force reflow so the reset isn't itself animated
+        fill.style.transition = '';
+      }
+      if(num) num.textContent = '0';
+      setTimeout(()=>{
+        if(fill) fill.style.width = fill.dataset.w + '%';
+        if(num) countUp(num, 1100);
+      }, delay);
+    });
+  }
+
   function show(n){
     i = Math.max(0, Math.min(slides.length-1, n));
     slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
@@ -867,6 +935,7 @@
       void el.offsetWidth;      // force reflow
       el.style.animation='';
     });
+    animateDataBars(slides[i]);
   }
   const next = ()=>show(i+1);
   const prev = ()=>show(i-1);
