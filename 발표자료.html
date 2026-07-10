@@ -6,253 +6,334 @@
 <title>My Beauty PT — 발표자료</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#33313a;
-    --ink-soft:#61606a;
-    --muted:#9b98a2;
-    --line:#f1edf0;
+    /* ---- surfaces (light) ---- */
     --paper:#ffffff;
-    --rose:#ff7570;
-    --rose-soft:#ffe0da;
-    --rose-deep:#e8574a;
-    --plum:#ff9e6c;
-    --gold:#ffc48f;
-    --bg1:#fff1ec;
-    --bg2:#fff8f5;
-    --grad:linear-gradient(135deg,#ff7570 0%,#ff9e6c 100%);
-    --shadow:0 18px 50px -22px rgba(255,110,95,.36);
+    --glass:linear-gradient(165deg,rgba(255,255,255,.74),rgba(255,255,255,.54));
+    --glass-2:linear-gradient(160deg,#ffffff,#fff6f1);
+    --line:rgba(120,60,50,.10);
+    --line-soft:rgba(120,60,50,.07);
+    --hi:rgba(255,255,255,.9);
+
+    /* ---- text ---- */
+    --ink:#33313a;
+    --ink-soft:#5f5d68;
+    --muted:#9b98a2;
+
+    /* ---- single accent family: coral → amber ---- */
+    --accent:#ff7d72;
+    --accent-2:#ff9e6c;
+    --accent-soft:#e8574a;      /* legible on light surfaces */
+    --accent-deep:#e8574a;
+    --rose-soft:#ffe3da;
+    --accent-glow:rgba(255,125,114,.16);
+    --grad:linear-gradient(100deg,#ff7570 0%,#ff9e6c 100%);
+
+    --shadow:0 34px 80px -34px rgba(200,90,70,.30);
+    --ease:cubic-bezier(.22,1,.36,1);
   }
+
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{
-    font-family:"Noto Sans KR","Noto Sans","Malgun Gothic","Apple SD Gothic Neo",-apple-system,system-ui,sans-serif;
-    background:radial-gradient(120% 120% at 15% 0%,var(--bg1),var(--bg2) 55%,#ffffff 100%);
+    font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",-apple-system,system-ui,sans-serif;
+    background:#fff9f6;
     color:var(--ink);
     display:flex;align-items:center;justify-content:center;
     overflow:hidden;
     -webkit-font-smoothing:antialiased;
-    letter-spacing:.15px;
+    letter-spacing:.1px;
   }
 
-  /* ---- animated background ---- */
-  #bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-  #bg .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.7;will-change:transform}
-  #bg .o1{width:520px;height:520px;left:-60px;top:-80px;background:radial-gradient(circle at 35% 35%,#ffab8c,transparent 70%);animation:drift1 24s ease-in-out infinite}
-  #bg .o2{width:620px;height:620px;right:-100px;bottom:-140px;background:radial-gradient(circle at 40% 40%,#ff9270,transparent 70%);animation:drift2 30s ease-in-out infinite}
-  #bg .o3{width:440px;height:440px;left:34%;top:44%;background:radial-gradient(circle at 40% 40%,#ffc78f,transparent 72%);opacity:.6;animation:drift3 20s ease-in-out infinite}
-  #bg .o4{width:400px;height:400px;left:8%;bottom:-60px;background:radial-gradient(circle at 40% 40%,#ffb27a,transparent 72%);opacity:.55;animation:drift4 27s ease-in-out infinite}
-  #bg .o5{width:360px;height:360px;right:12%;top:-40px;background:radial-gradient(circle at 40% 40%,#ffc0a0,transparent 72%);opacity:.5;animation:drift5 23s ease-in-out infinite}
-  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(160px,120px) scale(1.15)}}
-  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-150px,-110px) scale(1.12)}}
-  @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-140px,80px) scale(1.18)}66%{transform:translate(120px,-90px) scale(.88)}}
-  @keyframes drift4{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(200px,-120px) scale(1.1)}}
-  @keyframes drift5{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-170px,150px) scale(1.14)}}
-  @media (prefers-reduced-motion:reduce){#bg .orb{animation:none}}
+  /* ============================================================
+     BACKGROUND — layered mesh + slow blooms + grain + vignette
+     ============================================================ */
+  #bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(120% 120% at 15% 0%,#fff1ec 0%,#fff9f6 55%,#ffffff 100%)}
+  /* static mesh base for depth */
+  #bg .mesh{
+    position:absolute;inset:-10%;
+    background:
+      radial-gradient(38% 46% at 18% 22%, rgba(255,150,120,.30), transparent 62%),
+      radial-gradient(40% 50% at 82% 26%, rgba(255,190,140,.26), transparent 62%),
+      radial-gradient(46% 56% at 62% 88%, rgba(255,160,150,.22), transparent 60%);
+  }
+  #bg .orb{position:absolute;border-radius:50%;filter:blur(100px);will-change:transform;opacity:.42}
+  #bg .b1{width:640px;height:640px;left:-140px;top:-160px;background:radial-gradient(circle at 40% 40%,#ff7a63,transparent 70%);animation:drift1 46s ease-in-out infinite}
+  #bg .b2{width:720px;height:720px;right:-180px;bottom:-220px;background:radial-gradient(circle at 40% 40%,#ff9a5c,transparent 70%);animation:drift2 58s ease-in-out infinite}
+  #bg .b3{width:520px;height:520px;left:44%;top:38%;background:radial-gradient(circle at 40% 40%,#ff8b74,transparent 72%);opacity:.32;animation:drift3 52s ease-in-out infinite}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,50px) scale(1.06)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-44px) scale(1.05)}}
+  @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-56px,40px) scale(1.08)}}
+  /* film grain */
+  #bg .grain{
+    position:absolute;inset:0;opacity:.04;mix-blend-mode:soft-light;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* focus vignette for text legibility */
+  #bg .vig{position:absolute;inset:0;background:radial-gradient(120% 120% at 50% 38%,transparent 58%,rgba(150,70,55,.10) 100%)}
 
-  #stage{z-index:1}
+  /* ============================================================
+     STAGE / SCALING
+     ============================================================ */
+  #stage{position:relative;z-index:1;width:1280px;height:720px;transform-origin:center center}
 
-  /* ---- stage / scaling ---- */
-  #stage{position:relative;width:1280px;height:720px;transform-origin:center center}
   .slide{
     position:absolute;inset:0;
-    background:rgba(255,255,255,.60);
-    backdrop-filter:blur(18px) saturate(118%);
-    -webkit-backdrop-filter:blur(18px) saturate(118%);
-    border:1px solid rgba(255,255,255,.65);
-    border-radius:22px;
-    box-shadow:var(--shadow);
-    padding:52px 72px 40px;
+    background:var(--glass);
+    backdrop-filter:blur(20px) saturate(125%);
+    -webkit-backdrop-filter:blur(20px) saturate(125%);
+    border:1px solid var(--line);
+    border-radius:26px;
+    box-shadow:var(--shadow), inset 0 1px 0 var(--hi);
+    padding:58px 76px 46px;
     display:none;
     flex-direction:column;
     overflow:hidden;
   }
-  .slide.active{display:flex;animation:fade .45s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-
-  /* decorative corner blob */
+  .slide.active{display:flex}
+  /* subtle static corner depth glow */
   .slide::after{
-    content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%,var(--rose-soft),transparent 70%);
-    opacity:.6;pointer-events:none;
+    content:"";position:absolute;right:-160px;top:-160px;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle at 40% 40%,var(--accent-glow),transparent 70%);
+    pointer-events:none;
   }
-  .slide.active::after{animation:breathe 9s ease-in-out infinite}
-  @keyframes breathe{0%,100%{transform:translate(0,0) scale(1);opacity:.55}50%{transform:translate(-18px,14px) scale(1.12);opacity:.75}}
-  @media (prefers-reduced-motion:reduce){.slide.active::after{animation:none}}
 
-  /* ---- kicker / headings ---- */
-  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;letter-spacing:.8px;color:var(--rose-deep);text-transform:uppercase}
-  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--rose)}
-  h1.slide-title{font-size:43px;font-weight:800;letter-spacing:-.3px;margin:14px 0 6px;line-height:1.2}
-  .subhead{font-size:21.5px;color:var(--ink-soft);font-weight:600;margin-bottom:8px;letter-spacing:.1px}
-  .rule{width:56px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--rose),var(--plum));margin:16px 0 24px}
+  /* ---- reveal ---- */
+  [data-rv]{opacity:0}
+  .slide.active [data-rv]{animation:rv .55s var(--ease) both;animation-delay:var(--rvd,0s)}
+  @keyframes rv{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ============================================================
+     HEADINGS
+     ============================================================ */
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;letter-spacing:2.4px;color:var(--accent-soft);text-transform:uppercase}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+  h1.slide-title{font-size:46px;font-weight:800;letter-spacing:-.6px;margin:16px 0 4px;line-height:1.16;color:var(--ink)}
+  .subhead{font-size:22px;color:var(--ink-soft);font-weight:500;margin-top:6px;letter-spacing:.1px}
+  .subhead b{color:var(--accent-soft);font-weight:700}
+  .rule{width:60px;height:3px;border-radius:4px;background:var(--grad);margin:20px 0 30px;box-shadow:0 0 18px var(--accent-glow)}
 
   .content{flex:1;min-height:0;display:flex;position:relative;z-index:1}
+  .content.col{flex-direction:column;justify-content:flex-start;padding-top:20px}
 
-  /* ---- bullet lists ---- */
-  ul.pts{list-style:none;display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.52;letter-spacing:.1px}
+  /* ---- feature bullet list ---- */
+  ul.pts{list-style:none;display:flex;flex-direction:column;gap:16px;font-size:18px;line-height:1.55}
   ul.pts li{
     position:relative;color:var(--ink-soft);
-    padding:17px 22px 17px 24px;
-    border-radius:14px;
-    background:linear-gradient(120deg,#fff,#fff6f2);
-    border:1px solid var(--line);
-    border-left:4px solid var(--rose);
-    box-shadow:0 10px 24px -18px rgba(90,40,70,.35);
+    padding:18px 22px 18px 24px;
+    border-radius:16px;
+    background:var(--glass-2);
+    border:1px solid var(--line-soft);
+    border-left:3px solid var(--accent);
   }
   ul.pts b{color:var(--ink);font-weight:700}
-  .lead{color:var(--rose-deep)}
 
-  /* ---- number chips ---- */
-  .step-num{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 8px;border-radius:9px;background:var(--rose);color:#fff;font-weight:800;font-size:16px}
+  /* ---- number chip ---- */
+  .step-num{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 9px;border-radius:11px;background:var(--grad);color:#fff;font-weight:800;font-size:16px;box-shadow:0 10px 22px -8px rgba(255,110,95,.5)}
 
-  /* ============ TITLE SLIDE ============ */
-  .cover{align-items:flex-start;justify-content:flex-start;padding-top:96px;background:linear-gradient(135deg,#fff 0%,#fff3ec 55%,#ffe6d8 100%)}
-  .cover::after{width:520px;height:520px;right:-160px;top:auto;bottom:-200px;opacity:.5}
-  .logo-mark{width:88px;height:88px;border-radius:24px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 34px -14px rgba(240,110,70,.6);margin-bottom:22px}
-  .logo-mark svg{width:46px;height:46px}
-  .brand-badge{font-size:16px;font-weight:800;letter-spacing:2.5px;color:var(--rose-deep)}
-  .cover h1{font-size:74px;font-weight:900;letter-spacing:-1px;line-height:1.08;margin:18px 0 4px}
-  .cover h1 .en{background:linear-gradient(90deg,var(--rose-deep),var(--plum));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .cover .ko{font-size:27px;font-weight:700;color:var(--ink-soft);margin-bottom:28px;letter-spacing:.1px}
-  .tagline{font-size:25px;font-weight:700;color:var(--ink);border-left:5px solid var(--rose);padding-left:18px;line-height:1.5;max-width:820px;letter-spacing:.1px}
-  .oneliner{margin-top:22px;font-size:20px;color:var(--ink-soft);max-width:760px;line-height:1.55;letter-spacing:.1px}
-  .note-pill{position:absolute;top:40px;right:48px;font-size:14px;color:var(--muted);background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:20px;z-index:2}
+  /* ============================================================
+     COVER
+     ============================================================ */
+  .cover{justify-content:center;padding:0 84px;background:
+      radial-gradient(80% 120% at 12% 18%,rgba(255,150,118,.30),transparent 58%),
+      linear-gradient(135deg,#ffffff 0%,#fff3ec 55%,#ffe6d8 100%)}
+  .cover::after{width:560px;height:560px;right:-180px;bottom:-220px;top:auto;opacity:.9}
+  .logo-mark{width:82px;height:82px;border-radius:22px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 44px -16px rgba(255,120,100,.55);margin-bottom:24px}
+  .logo-mark svg{width:44px;height:44px}
+  .brand-badge{font-size:14px;font-weight:800;letter-spacing:3px;color:var(--accent-soft)}
+  .cover h1{font-size:82px;font-weight:900;letter-spacing:-1.5px;line-height:1.02;margin:16px 0 6px}
+  .cover h1 .en{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cover .ko{font-size:25px;font-weight:500;color:var(--ink-soft);margin-bottom:30px;letter-spacing:.2px}
+  .tagline{font-size:26px;font-weight:700;color:var(--ink);border-left:3px solid var(--accent);padding-left:20px;line-height:1.5;max-width:840px}
+  .oneliner{margin-top:24px;font-size:20px;color:var(--ink-soft);max-width:780px;line-height:1.55}
+  .oneliner b{color:var(--accent-soft);font-weight:700}
+  .note-pill{position:absolute;top:40px;right:48px;font-size:13px;font-weight:600;color:var(--ink-soft);background:rgba(255,255,255,.82);border:1px solid var(--line);padding:9px 16px;border-radius:22px;z-index:2;backdrop-filter:blur(6px)}
 
-  /* ============ SECTION DIVIDER ============ */
-  .divider{background:var(--grad);color:#fff;justify-content:center}
-  .divider::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.25),transparent 70%);opacity:.7}
-  .divider .kicker{color:#ffe3cf}
-  .divider h1{font-size:56px;font-weight:900;letter-spacing:-.5px;color:#fff;margin-top:10px}
-  .divider p{font-size:22px;color:#fff0e2;margin-top:16px;max-width:760px;line-height:1.5;letter-spacing:.1px}
-  .divider .rule{background:rgba(255,255,255,.7)}
+  /* ============================================================
+     SECTION DIVIDER
+     ============================================================ */
+  .divider{justify-content:center;align-items:flex-start;padding-left:96px;
+    background:linear-gradient(135deg,#ff7570 0%,#ff9e6c 100%);
+    border-color:rgba(255,255,255,.35);
+    box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.35);
+  }
+  .divider::after{width:640px;height:640px;right:-200px;top:50%;transform:translateY(-50%);opacity:1;background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.28),transparent 70%)}
+  .divider .ghost{position:absolute;left:60px;bottom:-40px;font-size:280px;font-weight:900;line-height:1;color:rgba(255,255,255,.16);letter-spacing:-6px;z-index:0;pointer-events:none}
+  .divider .kicker{color:#fff3ea}
+  .divider .kicker .dot{background:#fff;box-shadow:0 0 12px rgba(255,255,255,.7)}
+  .divider h1{font-size:60px;font-weight:900;letter-spacing:-1px;color:#fff;margin-top:12px;position:relative;z-index:1}
+  .divider p{font-size:23px;color:#fff2ea;margin-top:8px;max-width:780px;line-height:1.5;position:relative;z-index:1}
+  .divider .rule{margin:22px 0;background:rgba(255,255,255,.85);box-shadow:none}
 
-  /* ============ image row (slide 2) ============ */
-  .imgrow{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;align-self:flex-start;margin-top:6px}
-  .imcard{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 28px -16px rgba(90,40,70,.4);display:flex;flex-direction:column}
-  .imcard img{width:100%;height:230px;object-fit:cover;display:block}
-  .imcard .cap{padding:14px 16px}
-  .imcard .cap .t{font-weight:800;font-size:18px;display:flex;align-items:center;gap:8px}
-  .imcard .cap .d{font-size:16px;color:var(--muted);margin-top:4px;line-height:1.45;letter-spacing:.1px}
-  .tag{font-size:12px;font-weight:800;color:var(--rose-deep);background:var(--rose-soft);padding:3px 9px;border-radius:20px}
+  /* ============================================================
+     IMAGE ROW (slide 2)
+     ============================================================ */
+  .imgrow{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;align-self:flex-start;margin-top:6px}
+  .imcard{background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 22px 44px -30px rgba(200,90,70,.35)}
+  .imcard img{width:100%;height:238px;object-fit:cover;display:block;filter:saturate(1.02)}
+  .imcard .cap{padding:16px 18px 18px}
+  .imcard .cap .t{display:flex;align-items:center;gap:8px}
+  .imcard .cap .d{font-size:16px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+  .tag{font-size:12px;font-weight:800;letter-spacing:.5px;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:4px 11px;border-radius:20px}
 
-  /* ============ feature layout (phone + text) ============ */
-  .feat{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start;width:100%;align-self:flex-start;margin-top:10px}
+  /* ============================================================
+     FEATURE (phone + text)
+     ============================================================ */
+  .feat{display:grid;grid-template-columns:290px 1fr;gap:52px;align-items:center;width:100%;align-self:center;margin-top:4px}
   .phone{
-    width:280px;height:560px;border-radius:38px;background:#1d1526;
-    padding:12px;box-shadow:0 30px 60px -25px rgba(60,20,50,.6);position:relative;margin:0 auto;
-    justify-self:center;transform:scale(.82);transform-origin:center
+    width:278px;height:556px;border-radius:42px;
+    background:linear-gradient(180deg,#2b2733,#17141d);
+    padding:12px;position:relative;margin:0 auto;justify-self:center;
+    transform:scale(.86);transform-origin:center;
+    box-shadow:0 46px 84px -34px rgba(120,50,40,.5), inset 0 0 0 1px rgba(255,255,255,.08);
   }
-  .phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:110px;height:22px;border-radius:14px;background:#1d1526;z-index:3}
+  .phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:100px;height:20px;border-radius:12px;background:#0b090f;z-index:3}
   .phone-screen{
-    width:100%;height:100%;border-radius:28px;overflow:hidden;
-    background:linear-gradient(170deg,#ffffff 0%,#fff4f6 100%);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-    text-align:center;padding:24px;position:relative;
-    border:1.5px dashed var(--rose);
+    width:100%;height:100%;border-radius:32px;overflow:hidden;
+    background:radial-gradient(130% 80% at 50% 0%,#ffffff,#fff1ec 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+    text-align:center;padding:28px;position:relative;
   }
-  .phone-screen .ico{font-size:44px;width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(160deg,var(--rose),var(--plum));box-shadow:0 12px 24px -10px rgba(255,110,95,.55)}
-  .phone-screen .ph-t{font-weight:800;color:var(--rose-deep);font-size:19px}
-  .phone-screen .ph-s{font-size:14.5px;color:var(--muted);line-height:1.45}
-  .phone-screen .ph-badge{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:var(--rose);padding:4px 12px;border-radius:20px}
+  .phone-screen .ico{font-size:42px;width:92px;height:92px;border-radius:26px;display:flex;align-items:center;justify-content:center;background:var(--grad);box-shadow:0 18px 34px -12px rgba(255,110,95,.6)}
+  .phone-screen .ph-t{font-weight:800;color:var(--accent-deep);font-size:20px}
+  .phone-screen .ph-s{font-size:14.5px;color:#9a8f92;line-height:1.5;font-weight:500}
+  .phone-screen .ph-badge{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:var(--accent-deep);padding:5px 13px;border-radius:20px}
 
   .feat-text{display:flex;flex-direction:column}
-  .feat-text .grp-tag{display:inline-flex;align-items:center;font-size:16px;font-weight:800;letter-spacing:.6px;color:var(--rose-deep);background:var(--rose-soft);padding:7px 16px;border-radius:20px;margin-bottom:16px;align-self:flex-start}
+  .feat-text .grp-tag{display:inline-flex;align-items:center;font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:8px 16px;border-radius:22px;margin-bottom:22px;align-self:flex-start}
 
-  /* ============ flow (slide 5) ============ */
-  .flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;align-self:flex-start}
-  .flow .node{background:#fff;border:2px solid var(--rose-soft);border-radius:16px;padding:16px 14px;width:150px;text-align:center;box-shadow:0 8px 20px -14px rgba(90,40,70,.5)}
-  .flow .node .n-ico{font-size:27px}
-  .flow .node .n-t{font-weight:800;font-size:16px;margin-top:6px}
-  .flow .node .n-d{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.4}
-  .flow .arw{color:var(--rose);font-size:24px;font-weight:800}
-  .flow-note{margin-top:22px;text-align:center;font-size:16px;color:var(--ink-soft);width:100%;letter-spacing:.1px}
-  .flow-note b{color:var(--rose-deep)}
+  /* ============================================================
+     FLOW (slide 5)
+     ============================================================ */
+  .flow{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:wrap;width:100%;align-self:flex-start}
+  .flow .node{background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:20px 14px;width:156px;text-align:center;display:flex;flex-direction:column;gap:6px}
+  .flow .node .n-ico{font-size:28px}
+  .flow .node .n-t{font-weight:800;font-size:16px;color:var(--ink)}
+  .flow .node .n-d{font-size:13px;color:var(--muted);line-height:1.45}
+  .flow .arw{display:flex;align-items:center;color:var(--accent);font-size:22px;font-weight:800}
+  .flow-note{margin-top:30px;text-align:center;font-size:17px;color:var(--ink-soft);width:100%}
+  .flow-note b{color:var(--accent-soft)}
 
-  /* ============ cards grid (dev, problem, expect) ============ */
-  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;align-self:flex-start;margin-top:8px}
-  .card{background:linear-gradient(160deg,#fff,#fdf4f7);border:1px solid var(--line);border-radius:18px;padding:26px 24px;box-shadow:0 12px 30px -20px rgba(90,40,70,.5);position:relative;overflow:hidden}
-  .card .c-ico{font-size:34px;margin-bottom:12px}
-  .card h3{font-size:21px;font-weight:800;margin-bottom:10px}
-  .card p{font-size:17px;color:var(--ink-soft);line-height:1.55;letter-spacing:.1px}
-  .card .barnum{position:absolute;right:16px;top:10px;font-size:52px;font-weight:900;color:var(--rose-soft)}
+  /* ============================================================
+     CARDS GRID (problem / expect)
+     ============================================================ */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;align-self:flex-start;margin-top:6px}
+  .card{background:var(--glass-2);border:1px solid var(--line-soft);border-radius:20px;padding:30px 26px;position:relative;overflow:hidden;box-shadow:0 22px 44px -32px rgba(200,90,70,.35)}
+  .card .c-ico{font-size:34px;margin-bottom:14px}
+  .card h3{font-size:22px;font-weight:800;margin-bottom:12px;color:var(--ink)}
+  .card p{font-size:17px;color:var(--ink-soft);line-height:1.6}
+  .card p b, .card h3 b{color:var(--accent-soft);font-weight:700}
+  .card .barnum{position:absolute;right:18px;top:8px;font-size:64px;font-weight:900;color:rgba(255,133,116,.12);letter-spacing:-2px}
 
-  /* two column persona */
-  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:26px;width:100%;align-self:flex-start;margin-top:8px}
-  .panel{border-radius:18px;padding:26px 28px;border:1px solid var(--line)}
-  .panel.now{background:linear-gradient(160deg,#fff,#fff1e9)}
-  .panel.future{background:linear-gradient(160deg,#fff,#fff4ea)}
-  .panel h3{font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:16px}
-  .panel.now h3{color:var(--rose-deep)}
-  .panel.future h3{color:var(--rose-deep)}
-  .panel ul{list-style:none;display:flex;flex-direction:column;gap:12px}
-  .panel li{position:relative;padding-left:24px;font-size:17.5px;color:var(--ink-soft);line-height:1.5;letter-spacing:.1px}
-  .panel li::before{content:"";position:absolute;left:4px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--rose)}
-  .panel.future li::before{background:var(--plum)}
-  .panel li b{color:var(--ink)}
-  .need{margin-top:16px;font-size:16px;font-weight:700;color:var(--rose-deep);background:var(--rose-soft);padding:10px 14px;border-radius:12px}
+  /* ============================================================
+     PERSONA (2 columns)
+     ============================================================ */
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%;align-self:flex-start;margin-top:4px}
+  .panel{border-radius:20px;padding:30px 30px;border:1px solid var(--line-soft);background:var(--glass-2)}
+  .panel h3{font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:20px;color:var(--ink)}
+  .panel h3 span{font-size:14px;font-weight:600;color:var(--muted)}
+  .panel ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .panel li{position:relative;padding-left:24px;font-size:17.5px;color:var(--ink-soft);line-height:1.5}
+  .panel li::before{content:"";position:absolute;left:2px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .panel.future li::before{background:var(--accent-2)}
+  .panel li b{color:var(--ink);font-weight:700}
+  .need{margin-top:20px;font-size:16px;font-weight:700;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:12px 16px;border-radius:14px}
 
-  /* dev slide list */
-  .dev-list{display:flex;flex-direction:column;gap:16px;width:100%;align-self:flex-start;margin-top:6px}
-  .dev-item{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(120deg,#fff,#fdf5f8);border:1px solid var(--line);border-radius:16px;padding:20px 24px;box-shadow:0 10px 26px -20px rgba(90,40,70,.5)}
-  .dev-item .d-ico{font-size:30px;flex-shrink:0;width:56px;height:56px;border-radius:14px;background:var(--rose-soft);display:flex;align-items:center;justify-content:center}
-  .dev-item h3{font-size:20px;font-weight:800;margin-bottom:5px}
-  .dev-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.55;letter-spacing:.1px}
-  .dev-item p b{color:var(--rose-deep)}
+  /* ============================================================
+     DEV LIST
+     ============================================================ */
+  .dev-list{display:flex;flex-direction:column;gap:18px;width:100%;align-self:flex-start;margin-top:4px}
+  .dev-item{display:flex;gap:20px;align-items:flex-start;background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:22px 26px}
+  .dev-item .d-ico{font-size:28px;flex-shrink:0;width:58px;height:58px;border-radius:16px;background:var(--accent-glow);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center}
+  .dev-item h3{font-size:20px;font-weight:800;margin-bottom:6px;color:var(--ink)}
+  .dev-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.6}
+  .dev-item p b{color:var(--accent-soft);font-weight:700}
 
-  /* two-col simple list (hidden mission, expect) */
-  .stack{display:flex;flex-direction:column;gap:18px;width:100%;align-self:flex-start;margin-top:6px}
-  .row-item{display:flex;gap:18px;align-items:flex-start;padding:18px 22px;border-radius:16px;background:linear-gradient(120deg,#fff,#fff6ef);border:1px solid var(--line)}
+  /* ============================================================
+     STACK ROWS (hidden mission / limitations)
+     ============================================================ */
+  .stack{display:flex;flex-direction:column;gap:18px;width:100%;align-self:flex-start;margin-top:4px}
+  .row-item{display:flex;gap:20px;align-items:flex-start;padding:20px 24px;border-radius:18px;background:var(--glass-2);border:1px solid var(--line-soft)}
   .row-item .r-num{flex-shrink:0}
-  .row-item h3{font-size:19px;font-weight:800;margin-bottom:5px}
-  .row-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.55;letter-spacing:.1px}
-  .row-item p b{color:var(--ink)}
-  .sub-ex{font-size:15px;color:var(--muted);margin-top:6px;letter-spacing:.1px}
+  .row-item h3{font-size:19px;font-weight:800;margin-bottom:6px;color:var(--ink)}
+  .row-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.6}
+  .row-item p b{color:var(--ink);font-weight:700}
+  .sub-ex{font-size:15px;color:var(--muted);margin-top:8px}
 
-  /* ---- nav / chrome ---- */
-  #progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--plum));z-index:50;transition:width .3s}
-  .nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid var(--line);padding:8px 16px;border-radius:30px;box-shadow:var(--shadow);z-index:50}
-  .nav button{border:none;background:var(--rose-soft);color:var(--rose-deep);width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:800;transition:.2s}
-  .nav button:hover{background:var(--rose);color:#fff}
-  #counter{font-size:14px;font-weight:700;color:var(--ink-soft);min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
-  .hint{position:fixed;bottom:24px;right:26px;font-size:12.5px;color:var(--muted);z-index:40}
-  .clickzone{position:fixed;top:0;bottom:70px;width:22%;z-index:30;cursor:pointer}
+  /* ============================================================
+     CHROME — side arrows / dot indicator / hint
+     ============================================================ */
+  .edge-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:50;width:62px;height:120px;border:none;background:transparent;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.2;transition:opacity .45s var(--ease),color .25s var(--ease),transform .3s var(--ease)}
+  .edge-nav svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  #prev{left:10px}
+  #next{right:10px}
+  /* fade the matching arrow in when the cursor is on that side */
+  #zL:hover ~ #prev,#zR:hover ~ #next{opacity:.8;color:var(--accent-deep)}
+  .edge-nav:hover{opacity:1;color:var(--accent-deep)}
+  #prev:hover{transform:translateY(-50%) translateX(-3px)}
+  #next:hover{transform:translateY(-50%) translateX(3px)}
+
+  .dots{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;z-index:50;padding:10px 6px}
+  .dots .dot{width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.16;border:none;padding:0;cursor:pointer;transition:width .45s var(--ease),opacity .3s var(--ease)}
+  .dots .dot:hover{opacity:.42}
+  .dots .dot.on{width:18px;height:5px;border-radius:5px;background:var(--grad);opacity:1}
+
+  .hint{position:fixed;bottom:26px;right:28px;font-size:12px;color:var(--muted);opacity:.4;z-index:40;transition:opacity .5s var(--ease)}
+  .hint:hover{opacity:1}
+  .clickzone{position:fixed;top:0;bottom:80px;width:18%;z-index:30;cursor:pointer}
   #zL{left:0}#zR{right:0}
+
+  /* ============================================================
+     RESPONSIVE / REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion:reduce){
+    [data-rv]{opacity:1 !important}
+    .slide.active [data-rv]{animation:none !important}
+    #bg .orb{animation:none !important}
+  }
 </style>
 </head>
 <body>
-<div id="bg"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="orb o4"></span><span class="orb o5"></span></div>
-<div id="progress"></div>
+<div id="bg">
+  <div class="mesh"></div>
+  <span class="orb b1"></span><span class="orb b2"></span><span class="orb b3"></span>
+  <div class="grain"></div>
+  <div class="vig"></div>
+</div>
 <div id="stage">
 
   <!-- 1. COVER -->
   <section class="slide cover active">
     <div class="note-pill">사랑반 4조 · 3+1=4</div>
-    <div class="logo-mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 8C50 8 20 44 20 64a30 30 0 0 0 60 0C80 44 50 8 50 8Z"/></svg></div>
-    <div class="brand-badge">✦ PERSONAL BEAUTY TRAINER</div>
-    <h1><span class="en">My Beauty PT</span></h1>
-    <div class="ko">마이 뷰티 PT — 퍼스널 뷰티 트레이너</div>
-    <div class="tagline">"오늘의 관리가 5년 후 내 피부를 바꾼다<br>— 그 변화를 미리 보여드릴게요."</div>
-    <div class="oneliner">매일 진단부터 맞춤 제품 배송까지, 알아서 챙겨주는 <b>AI 뷰티 트레이너</b></div>
+    <div class="logo-mark" data-rv><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 8C50 8 20 44 20 64a30 30 0 0 0 60 0C80 44 50 8 50 8Z"/></svg></div>
+    <div class="brand-badge" data-rv>✦ PERSONAL BEAUTY TRAINER</div>
+    <h1 data-rv><span class="en">My Beauty PT</span></h1>
+    <div class="ko" data-rv>마이 뷰티 PT — 퍼스널 뷰티 트레이너</div>
+    <div class="tagline" data-rv>"오늘의 관리가 5년 후 내 피부를 바꾼다<br>— 그 변화를 미리 보여드릴게요."</div>
+    <div class="oneliner" data-rv>매일 진단부터 맞춤 제품 배송까지, 알아서 챙겨주는 <b>AI 뷰티 트레이너</b></div>
   </section>
 
   <!-- 2. 기획 배경 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>BACKGROUND</div>
-    <h1 class="slide-title">기획 배경</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>BACKGROUND</div>
+    <h1 class="slide-title" data-rv>기획 배경</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
-      <div class="imrow imgrow imrow-3" style="width:100%;align-self:flex-start;margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
-        <div class="imcard">
+      <div class="imgrow">
+        <div class="imcard" data-rv>
           <img src="assets/tired-worker.png" alt="바쁜 직장인">
           <div class="cap"><div class="t"><span class="tag">귀찮음</span></div><div class="d">야근에 지친 바쁜 직장인 — 관리에 쓸 시간·에너지가 없다</div></div>
         </div>
-        <div class="imcard">
+        <div class="imcard" data-rv>
           <img src="assets/big-data.png" alt="데이터 예측">
           <div class="cap"><div class="t"><span class="tag">신뢰</span></div><div class="d">데이터 학습 기반 미래 예측 모델로 신뢰 확보</div></div>
         </div>
-        <div class="imcard">
+        <div class="imcard" data-rv>
           <img src="assets/sun-damage.png" alt="선크림 예시">
           <div class="cap"><div class="t"><span class="tag">현실감</span></div><div class="d">선크림 예시 — 누적된 관리 차이가 5년·10년 뒤를 가른다</div></div>
         </div>
@@ -262,13 +343,13 @@
 
   <!-- 3. 페르소나 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>PERSONA</div>
-    <h1 class="slide-title">페르소나 정의</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>PERSONA</div>
+    <h1 class="slide-title" data-rv>페르소나 정의</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="cols2">
-        <div class="panel now">
-          <h3>🎯 현재 <span style="font-size:14px;font-weight:700">핵심 타깃</span></h3>
+        <div class="panel now" data-rv>
+          <h3>🎯 현재 <span>핵심 타깃</span></h3>
           <ul>
             <li><b>20대 중후반 직장인 여성</b></li>
             <li>야근으로 피로 누적, 수면·생활 리듬 불규칙</li>
@@ -276,8 +357,8 @@
           </ul>
           <div class="need">니즈 — "노력은 최소로, 그래도 꾸준히 관리되는" 서비스</div>
         </div>
-        <div class="panel future">
-          <h3>🚀 미래 <span style="font-size:14px;font-weight:700">확장 시나리오</span></h3>
+        <div class="panel future" data-rv>
+          <h3>🚀 미래 <span>확장 시나리오</span></h3>
           <ul>
             <li>기존 사용자의 <b>30대 진입</b>에 따른 라이프사이클 확장</li>
             <li><b>60·70대 부모님 세대</b>(안티에이징)로 확산</li>
@@ -291,57 +372,57 @@
 
   <!-- 4. 문제 정의 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>PROBLEM</div>
-    <h1 class="slide-title">문제 정의</h1>
-    <div class="subhead">관리를 시작·지속하지 못하게 만드는 3가지 장벽</div>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>PROBLEM</div>
+    <h1 class="slide-title" data-rv>문제 정의</h1>
+    <div class="subhead" data-rv>관리를 시작·지속하지 못하게 만드는 3가지 장벽</div>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="cards3">
-        <div class="card"><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3><p>진단·탐색·구매·관리의 단계마다 노력이 들어 <b>시작조차 어렵다</b></p></div>
-        <div class="card"><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3><p>하루 이틀 하다가 이유·보상이 없어 <b>금방 그만둔다</b></p></div>
-        <div class="card"><div class="barnum">3</div><div class="c-ico">🕶️</div><h3>현실감 부족</h3><p>"지금 안 해도 괜찮겠지" — 관리의 효과가 <b>눈에 보이지 않는다</b></p></div>
+        <div class="card" data-rv><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3><p>진단·탐색·구매·관리의 단계마다 노력이 들어 <b>시작조차 어렵다</b></p></div>
+        <div class="card" data-rv><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3><p>하루 이틀 하다가 이유·보상이 없어 <b>금방 그만둔다</b></p></div>
+        <div class="card" data-rv><div class="barnum">3</div><div class="c-ico">🕶️</div><h3>현실감 부족</h3><p>"지금 안 해도 괜찮겠지" — 관리의 효과가 <b>눈에 보이지 않는다</b></p></div>
       </div>
     </div>
   </section>
 
   <!-- 5. 기획 개요 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>OVERVIEW</div>
-    <h1 class="slide-title">기획 개요</h1>
-    <div class="subhead">구독 기반 <b>진단–추천–배송–피드백</b> 순환 구조</div>
-    <div class="rule"></div>
-    <div class="content" style="flex-direction:column;justify-content:flex-start;padding-top:24px">
+    <div class="kicker" data-rv><span class="dot"></span>OVERVIEW</div>
+    <h1 class="slide-title" data-rv>기획 개요</h1>
+    <div class="subhead" data-rv>구독 기반 <b>진단–추천–배송–피드백</b> 순환 구조</div>
+    <div class="rule" data-rv></div>
+    <div class="content col">
       <div class="flow">
-        <div class="node"><div class="n-ico">💳</div><div class="n-t">구독 시작</div><div class="n-d">진단용 카메라 배송</div></div>
-        <div class="arw">→</div>
-        <div class="node"><div class="n-ico">📷</div><div class="n-t">진단</div><div class="n-d">피부 촬영 + 음성 진단 (매일 자동)</div></div>
-        <div class="arw">→</div>
-        <div class="node"><div class="n-ico">✨</div><div class="n-t">추천</div><div class="n-d">맞춤 제품 + 사용 TIP 안내</div></div>
-        <div class="arw">→</div>
-        <div class="node"><div class="n-ico">📦</div><div class="n-t">배송</div><div class="n-d">주 1회 · 친환경 용기</div></div>
-        <div class="arw">→</div>
-        <div class="node"><div class="n-ico">🔁</div><div class="n-t">피드백</div><div class="n-d">다시 진단으로 순환</div></div>
+        <div class="node" data-rv><div class="n-ico">💳</div><div class="n-t">구독 시작</div><div class="n-d">진단용 카메라 배송</div></div>
+        <div class="arw" data-rv>→</div>
+        <div class="node" data-rv><div class="n-ico">📷</div><div class="n-t">진단</div><div class="n-d">피부 촬영 + 음성 진단 (매일 자동)</div></div>
+        <div class="arw" data-rv>→</div>
+        <div class="node" data-rv><div class="n-ico">✨</div><div class="n-t">추천</div><div class="n-d">맞춤 제품 + 사용 TIP 안내</div></div>
+        <div class="arw" data-rv>→</div>
+        <div class="node" data-rv><div class="n-ico">📦</div><div class="n-t">배송</div><div class="n-d">주 1회 · 친환경 용기</div></div>
+        <div class="arw" data-rv>→</div>
+        <div class="node" data-rv><div class="n-ico">🔁</div><div class="n-t">피드백</div><div class="n-d">다시 진단으로 순환</div></div>
       </div>
-      <div class="flow-note">순환할수록 데이터가 쌓여 <b>진단·추천이 점점 정교</b>해진다</div>
+      <div class="flow-note" data-rv>순환할수록 데이터가 쌓여 <b>진단·추천이 점점 정교</b>해진다</div>
     </div>
   </section>
 
   <!-- 6. 개발 내용 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>DEVELOPMENT</div>
-    <h1 class="slide-title">개발 내용</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>DEVELOPMENT</div>
+    <h1 class="slide-title" data-rv>개발 내용</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="dev-list">
-        <div class="dev-item">
+        <div class="dev-item" data-rv>
           <div class="d-ico">🧠</div>
           <div><h3>피부 예측 모델</h3><p>AI Hub 피부 데이터셋 활용(약 <b>10,000건 규모</b>) — 데이터 학습으로 <b>미래 피부 예측 신뢰도</b> 확보</p></div>
         </div>
-        <div class="dev-item">
+        <div class="dev-item" data-rv>
           <div class="d-ico">🎙️</div>
           <div><h3>음성인식 기능</h3><p>Web Speech API(STT/TTS) 기반 음성 진단 + Claude API 연동 — 타이핑 없이 <b>대화형 진단</b>, 답변은 스프레드시트에 누적 저장</p></div>
         </div>
-        <div class="dev-item">
+        <div class="dev-item" data-rv>
           <div class="d-ico">🤖</div>
           <div><h3>Claude API 연동 고도화</h3><p>일방향 설문 → 이전 답변을 기억하는 <b>양방향 대화</b>, 진단 결과 기반 <b>코스맥스 제품 맞춤 추천 + AI 코멘트</b> 자동 생성</p></div>
         </div>
@@ -351,25 +432,26 @@
 
   <!-- ===== DIVIDER (1) 귀찮음 ===== -->
   <section class="slide divider">
-    <div class="kicker"><span class="dot" style="background:#fff"></span>SOLUTION 01</div>
-    <h1>① 귀찮음 해소</h1>
-    <div class="rule"></div>
-    <p>진단·탐색·구매·관리의 모든 단계에서 사용자의 노력을 최소화한다</p>
+    <div class="ghost">01</div>
+    <div class="kicker" data-rv><span class="dot"></span>SOLUTION 01</div>
+    <h1 data-rv>① 귀찮음 해소</h1>
+    <div class="rule" data-rv></div>
+    <p data-rv>진단·탐색·구매·관리의 모든 단계에서 사용자의 노력을 최소화한다</p>
   </section>
 
   <!-- 7 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title">촬영 외 모든 진단은 음성 설문으로</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>촬영 외 모든 진단은 음성 설문으로</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🎤</div><div class="ph-t">음성 진단</div><div class="ph-s">"최근 생활습관을<br>목소리로 여쭤볼게요"</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🎤</div><div class="ph-t">음성 진단</div><div class="ph-s">"최근 생활습관을<br>목소리로 여쭤볼게요"</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>촬영을 뺀 생활습관 진단(수면·물·스트레스·운동)을 <b>타이핑 없이 목소리로</b> — 손이 바쁜 아침/취침 전에도 부담 없이 완료</li>
-            <li>AI가 질문을 읽어주고(TTS) 사용자가 말하면 자동 변환(STT) → <b>AI와 대화하듯 양방향</b></li>
+            <li data-rv>촬영을 뺀 생활습관 진단(수면·물·스트레스·운동)을 <b>타이핑 없이 목소리로</b> — 손이 바쁜 아침/취침 전에도 부담 없이 완료</li>
+            <li data-rv>AI가 질문을 읽어주고(TTS) 사용자가 말하면 자동 변환(STT) → <b>AI와 대화하듯 양방향</b></li>
           </ul>
         </div>
       </div>
@@ -378,17 +460,17 @@
 
   <!-- 8 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title">정해진 시간에 자동으로 진단 ON</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>정해진 시간에 자동으로 진단 ON</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">⏰</div><div class="ph-t">자동 진단 시간</div><div class="ph-s">매일 같은 시간<br>자동 실행</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">⏰</div><div class="ph-t">자동 진단 시간</div><div class="ph-s">매일 같은 시간<br>자동 실행</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>진단 시간을 한 번 설정하면 매일 같은 시간에 <b>자동으로 켜짐</b> → "언제 할지" 결정하는 부담 제거, 자연스러운 루틴화</li>
-            <li>'진단 시간 변경'으로 아침 준비·나이트 루틴 등 <b>내 생활 패턴에 맞게</b> 언제든 재설정</li>
+            <li data-rv>진단 시간을 한 번 설정하면 매일 같은 시간에 <b>자동으로 켜짐</b> → "언제 할지" 결정하는 부담 제거, 자연스러운 루틴화</li>
+            <li data-rv>'진단 시간 변경'으로 아침 준비·나이트 루틴 등 <b>내 생활 패턴에 맞게</b> 언제든 재설정</li>
           </ul>
         </div>
       </div>
@@ -397,18 +479,18 @@
 
   <!-- 9 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title">내 피부에 맞는 제품을 매주 자동 추천</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>내 피부에 맞는 제품을 매주 자동 추천</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💡</div><div class="ph-t">맞춤 추천</div><div class="ph-s">데이터 근거 성분<br>+ 사용 TIP</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💡</div><div class="ph-t">맞춤 추천</div><div class="ph-s">데이터 근거 성분<br>+ 사용 TIP</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>제품 탐색·비교 필요 X — "촬영 데이터 + 음성 답변을 함께 분석해서 골랐어요"로 <b>선택 피로 제거</b></li>
-            <li>단순 추천이 아니라 <b>데이터 근거 성분 + 이번주 사용 TIP</b>까지 제공 → 왜 이 제품인지, 어떻게 쓰는지 자동 안내</li>
-            <li>코스맥스/고객사 제조 제품 중 <b>진단 수치 기반 매칭</b></li>
+            <li data-rv>제품 탐색·비교 필요 X — "촬영 데이터 + 음성 답변을 함께 분석해서 골랐어요"로 <b>선택 피로 제거</b></li>
+            <li data-rv>단순 추천이 아니라 <b>데이터 근거 성분 + 이번주 사용 TIP</b>까지 제공 → 왜 이 제품인지, 어떻게 쓰는지 자동 안내</li>
+            <li data-rv>코스맥스/고객사 제조 제품 중 <b>진단 수치 기반 매칭</b></li>
           </ul>
         </div>
       </div>
@@ -417,18 +499,18 @@
 
   <!-- 10 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title">추천 제품은 매주 자동 배송</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>추천 제품은 매주 자동 배송</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📦</div><div class="ph-t">자동 배송</div><div class="ph-s">진단만 하면<br>제품은 알아서 도착</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📦</div><div class="ph-t">자동 배송</div><div class="ph-s">진단만 하면<br>제품은 알아서 도착</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>진단만 하면 제품은 알아서 도착 → <b>주문·재구매 행동 자체를 제거</b></li>
-            <li>진단 결과에 따라 사용량·교체 주기를 유동 조절(우선 1주 소량) → <b>낭비 없이 딱 필요한 만큼만</b></li>
-            <li><b>친환경 용기 배송</b>으로 구독형 소비의 환경 부담 완화</li>
+            <li data-rv>진단만 하면 제품은 알아서 도착 → <b>주문·재구매 행동 자체를 제거</b></li>
+            <li data-rv>진단 결과에 따라 사용량·교체 주기를 유동 조절(우선 1주 소량) → <b>낭비 없이 딱 필요한 만큼만</b></li>
+            <li data-rv><b>친환경 용기 배송</b>으로 구독형 소비의 환경 부담 완화</li>
           </ul>
         </div>
       </div>
@@ -437,25 +519,26 @@
 
   <!-- ===== DIVIDER (2) 동기/락인 ===== -->
   <section class="slide divider">
-    <div class="kicker"><span class="dot" style="background:#fff"></span>SOLUTION 02</div>
-    <h1>② 지속적인 동기 · 락인</h1>
-    <div class="rule"></div>
-    <p>계속할 이유와 보상을 만들어 이탈을 막고 습관으로 굳힌다</p>
+    <div class="ghost">02</div>
+    <div class="kicker" data-rv><span class="dot"></span>SOLUTION 02</div>
+    <h1 data-rv>② 지속적인 동기 · 락인</h1>
+    <div class="rule" data-rv></div>
+    <p data-rv>계속할 이유와 보상을 만들어 이탈을 막고 습관으로 굳힌다</p>
   </section>
 
   <!-- 11 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title">정해진 시간에 진단 알림 & 자동 앱 ON</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>정해진 시간에 진단 알림 & 자동 앱 ON</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔔</div><div class="ph-t">진단 알림</div><div class="ph-s">'기억할 일'에서<br>'챙겨주는 일'로</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔔</div><div class="ph-t">진단 알림</div><div class="ph-s">'기억할 일'에서<br>'챙겨주는 일'로</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>설정 시간에 알림 → 진단을 <b>'기억해야 하는 일'에서 '챙겨주는 일'로 전환</b></li>
-            <li>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관</b> 형성</li>
+            <li data-rv>설정 시간에 알림 → 진단을 <b>'기억해야 하는 일'에서 '챙겨주는 일'로 전환</b></li>
+            <li data-rv>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관</b> 형성</li>
           </ul>
         </div>
       </div>
@@ -464,18 +547,18 @@
 
   <!-- 12 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title">주차별 제품 배송 & 리포트 제공</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>주차별 제품 배송 & 리포트 제공</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📊</div><div class="ph-t">주간 리포트</div><div class="ph-s">지난주 대비<br>내 피부 변화</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📊</div><div class="ph-t">주간 리포트</div><div class="ph-s">지난주 대비<br>내 피부 변화</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>매주 리포트로 <b>"지난주 대비 내 피부 변화"</b>를 정기 확인 → 계속할 이유 제공</li>
-            <li>리포트–제품이 세트로 도착 → "받은 제품을 써야 다음 리포트가 의미 있다"는 <b>사용 루프(락인)</b> 형성</li>
-            <li>진단을 빼먹으면 "빼먹을수록 리포트 정확도가 떨어져요" 안내 → <b>꾸준한 참여 유도</b></li>
+            <li data-rv>매주 리포트로 <b>"지난주 대비 내 피부 변화"</b>를 정기 확인 → 계속할 이유 제공</li>
+            <li data-rv>리포트–제품이 세트로 도착 → "받은 제품을 써야 다음 리포트가 의미 있다"는 <b>사용 루프(락인)</b> 형성</li>
+            <li data-rv>진단을 빼먹으면 "빼먹을수록 리포트 정확도가 떨어져요" 안내 → <b>꾸준한 참여 유도</b></li>
           </ul>
         </div>
       </div>
@@ -484,18 +567,18 @@
 
   <!-- 13 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title">포인트 제도</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>포인트 제도</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🏆</div><div class="ph-t">포인트 · 랭킹</div><div class="ph-s">출석 · 관리로<br>포인트 적립</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🏆</div><div class="ph-t">포인트 · 랭킹</div><div class="ph-s">출석 · 관리로<br>포인트 적립</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>출석 및 피부관리를 통한 <b>포인트 적립</b> — 행동별 포인트로 게이미피케이션</li>
-            <li><b>이용자 내 순위 노출</b>로 경쟁심 자극 · 매주 월요일 00:00 초기화</li>
-            <li>적립 포인트를 <b>혜택으로 전환</b></li>
+            <li data-rv>출석 및 피부관리를 통한 <b>포인트 적립</b> — 행동별 포인트로 게이미피케이션</li>
+            <li data-rv><b>이용자 내 순위 노출</b>로 경쟁심 자극 · 매주 월요일 00:00 초기화</li>
+            <li data-rv>적립 포인트를 <b>혜택으로 전환</b></li>
           </ul>
         </div>
       </div>
@@ -504,17 +587,17 @@
 
   <!-- 14 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title">커뮤니티 서비스</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>커뮤니티 서비스</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💬</div><div class="ph-t">고민별 채팅방</div><div class="ph-s">비슷한 고민끼리<br>정보·경험 공유</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💬</div><div class="ph-t">고민별 채팅방</div><div class="ph-s">비슷한 고민끼리<br>정보·경험 공유</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>비슷한 고민끼리 모이는 <b>고민별 채팅방</b>으로 정보·경험 공유 → 혼자 관리할 때보다 <b>지속률↑</b></li>
-            <li>리뷰 작성 시 포인트 지급으로 <b>커뮤니티 참여와 락인을 연결</b></li>
+            <li data-rv>비슷한 고민끼리 모이는 <b>고민별 채팅방</b>으로 정보·경험 공유 → 혼자 관리할 때보다 <b>지속률↑</b></li>
+            <li data-rv>리뷰 작성 시 포인트 지급으로 <b>커뮤니티 참여와 락인을 연결</b></li>
           </ul>
         </div>
       </div>
@@ -523,26 +606,27 @@
 
   <!-- ===== DIVIDER (3) 현실감 ===== -->
   <section class="slide divider">
-    <div class="kicker"><span class="dot" style="background:#fff"></span>SOLUTION 03</div>
-    <h1>③ 관리 필요성의 현실감</h1>
-    <div class="rule"></div>
-    <p>보이지 않던 피부 상태와 변화를 눈으로 체감하게 만든다</p>
+    <div class="ghost">03</div>
+    <div class="kicker" data-rv><span class="dot"></span>SOLUTION 03</div>
+    <h1 data-rv>③ 관리 필요성의 현실감</h1>
+    <div class="rule" data-rv></div>
+    <p data-rv>보이지 않던 피부 상태와 변화를 눈으로 체감하게 만든다</p>
   </section>
 
   <!-- 15 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>③ 현실감 · 세부 기능</div>
-    <h1 class="slide-title">직관적인 시각 분석 자료</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>③ 현실감 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>직관적인 시각 분석 자료</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔬</div><div class="ph-t">부위 하이라이트</div><div class="ph-s">모공·유수분·색소<br>레이더 차트</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔬</div><div class="ph-t">부위 하이라이트</div><div class="ph-s">모공·유수분·색소<br>레이더 차트</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>항목(모공·유수분·색소침착·톤·노폐물) 탭 → 내 사진 위 해당 부위 <b>하이라이트</b> → "내 피부가 지금 이렇구나"를 즉시 인지</li>
-            <li><b>육각형(레이더) 차트</b> 꼭짓점을 누르면 사진에서 그 부위가 강조 → 수치와 위치를 동시에 확인</li>
-            <li>밤 진단에서 <b>클렌징 후 남은 노폐물</b>을 시각화 → 관리 필요성 체감</li>
+            <li data-rv>항목(모공·유수분·색소침착·톤·노폐물) 탭 → 내 사진 위 해당 부위 <b>하이라이트</b> → "내 피부가 지금 이렇구나"를 즉시 인지</li>
+            <li data-rv><b>육각형(레이더) 차트</b> 꼭짓점을 누르면 사진에서 그 부위가 강조 → 수치와 위치를 동시에 확인</li>
+            <li data-rv>밤 진단에서 <b>클렌징 후 남은 노폐물</b>을 시각화 → 관리 필요성 체감</li>
           </ul>
         </div>
       </div>
@@ -551,17 +635,17 @@
 
   <!-- 16 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>③ 현실감 · 세부 기능</div>
-    <h1 class="slide-title">피부 관리 전후 비교 이미지</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>③ 현실감 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>피부 관리 전후 비교 이미지</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone"><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🪞</div><div class="ph-t">전후 비교</div><div class="ph-s">어제 · 오늘<br>선택일 vs 전날</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🪞</div><div class="ph-t">전후 비교</div><div class="ph-s">어제 · 오늘<br>선택일 vs 전날</div></div></div>
         <div class="feat-text">
-          <span class="grp-tag">SOLUTION</span>
+          <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li>'어제·오늘 비교', '선택일 vs 전날'로 <b>실제 변화를 눈으로 확인</b> → 성취감·지속 동기로 연결</li>
-            <li>프레이밍은 <b>이득 중심</b> — "걱정을 주는 예측이 아니라, 관리의 효과를 보여주는 예측" → 불안이 아닌 <b>관리 동기로 전환</b></li>
+            <li data-rv>'어제·오늘 비교', '선택일 vs 전날'로 <b>실제 변화를 눈으로 확인</b> → 성취감·지속 동기로 연결</li>
+            <li data-rv>프레이밍은 <b>이득 중심</b> — "걱정을 주는 예측이 아니라, 관리의 효과를 보여주는 예측" → 불안이 아닌 <b>관리 동기로 전환</b></li>
           </ul>
         </div>
       </div>
@@ -570,19 +654,19 @@
 
   <!-- 17. 히든 미션 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>HIDDEN MISSION</div>
-    <h1 class="slide-title">히든 미션 대응 방안</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>HIDDEN MISSION</div>
+    <h1 class="slide-title" data-rv>히든 미션 대응 방안</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="stack">
-        <div class="row-item">
+        <div class="row-item" data-rv>
           <span class="step-num r-num">①</span>
           <div>
             <h3>정보 신뢰성 확보</h3>
             <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>10,000건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
           </div>
         </div>
-        <div class="row-item">
+        <div class="row-item" data-rv>
           <span class="step-num r-num">②</span>
           <div>
             <h3>연령별 맞춤 + 미성년자 보호</h3>
@@ -596,29 +680,29 @@
 
   <!-- 18. 기대효과 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>EXPECTED IMPACT</div>
-    <h1 class="slide-title">기대효과</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>EXPECTED IMPACT</div>
+    <h1 class="slide-title" data-rv>기대효과</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
       <div class="cards3">
-        <div class="card"><div class="c-ico">🙆‍♀️</div><h3>사용자</h3><p>진단·탐색·구매 3단계 리소스를 최소화한 <b>'노력 없는 지속 관리'</b> 경험</p></div>
-        <div class="card"><div class="c-ico">📈</div><h3>데이터</h3><p>진단 수치·라이프스타일·제품 반응 데이터 축적 → <b>맞춤 정확도·예측 모델 고도화</b></p></div>
-        <div class="card"><div class="c-ico">🏢</div><h3>사업 (코스맥스)</h3><p>구독 기반 반복 매출 + 실사용 피부 데이터 확보로 <b>제품 개발·추천 선순환</b></p></div>
+        <div class="card" data-rv><div class="c-ico">🙆‍♀️</div><h3>사용자</h3><p>진단·탐색·구매 3단계 리소스를 최소화한 <b>'노력 없는 지속 관리'</b> 경험</p></div>
+        <div class="card" data-rv><div class="c-ico">📈</div><h3>데이터</h3><p>진단 수치·라이프스타일·제품 반응 데이터 축적 → <b>맞춤 정확도·예측 모델 고도화</b></p></div>
+        <div class="card" data-rv><div class="c-ico">🏢</div><h3>사업 (코스맥스)</h3><p>구독 기반 반복 매출 + 실사용 피부 데이터 확보로 <b>제품 개발·추천 선순환</b></p></div>
       </div>
     </div>
   </section>
 
   <!-- 19. 보완점 및 한계 -->
   <section class="slide">
-    <div class="kicker"><span class="dot"></span>LIMITATIONS</div>
-    <h1 class="slide-title">보완점 및 한계</h1>
-    <div class="rule"></div>
+    <div class="kicker" data-rv><span class="dot"></span>LIMITATIONS</div>
+    <h1 class="slide-title" data-rv>보완점 및 한계</h1>
+    <div class="rule" data-rv></div>
     <div class="content">
-      <div class="stack" style="gap:14px">
-        <div class="row-item"><span class="step-num r-num">1</span><div><h3>초기 사용자 확보</h3><p>카메라 배송 등 초기 진입 장벽, 습관 형성 전 이탈 리스크 → <b>온보딩·초기 무료 체험</b>으로 완화</p></div></div>
-        <div class="row-item"><span class="step-num r-num">2</span><div><h3>진단 정확도</h3><p>촬영 환경(조명·거리) 편차에 따른 신뢰도 한계 → <b>촬영 가이드 UI</b>로 보완</p></div></div>
-        <div class="row-item"><span class="step-num r-num">3</span><div><h3>이미지 생성 의존</h3><p>5년 후 예측이 외부 생성 서비스에 의존(Claude API 이미지 생성 미지원) → <b>비용·안정성 관리</b> 필요</p></div></div>
-        <div class="row-item"><span class="step-num r-num">4</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
+      <div class="stack">
+        <div class="row-item" data-rv><span class="step-num r-num">1</span><div><h3>초기 사용자 확보</h3><p>카메라 배송 등 초기 진입 장벽, 습관 형성 전 이탈 리스크 → <b>온보딩·초기 무료 체험</b>으로 완화</p></div></div>
+        <div class="row-item" data-rv><span class="step-num r-num">2</span><div><h3>진단 정확도</h3><p>촬영 환경(조명·거리) 편차에 따른 신뢰도 한계 → <b>촬영 가이드 UI</b>로 보완</p></div></div>
+        <div class="row-item" data-rv><span class="step-num r-num">3</span><div><h3>이미지 생성 의존</h3><p>5년 후 예측이 외부 생성 서비스에 의존(Claude API 이미지 생성 미지원) → <b>비용·안정성 관리</b> 필요</p></div></div>
+        <div class="row-item" data-rv><span class="step-num r-num">4</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
       </div>
     </div>
   </section>
@@ -628,27 +712,46 @@
 <!-- chrome -->
 <div class="clickzone" id="zL"></div>
 <div class="clickzone" id="zR"></div>
-<div class="nav">
-  <button id="prev" aria-label="이전">‹</button>
-  <span id="counter">1 / 19</span>
-  <button id="next" aria-label="다음">›</button>
-</div>
+<button class="edge-nav" id="prev" aria-label="이전 슬라이드"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button class="edge-nav" id="next" aria-label="다음 슬라이드"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+<div class="dots" id="dots" role="tablist" aria-label="슬라이드 이동"></div>
 <div class="hint">← → 이동 · F 전체화면</div>
 
 <script>
   const slides = [...document.querySelectorAll('.slide')];
+  const dotsWrap = document.getElementById('dots');
   let i = 0;
-  const counter = document.getElementById('counter');
-  const progress = document.getElementById('progress');
+
+  // assign stagger delay per reveal element, once
+  slides.forEach(slide=>{
+    slide.querySelectorAll('[data-rv]').forEach((el,idx)=>{
+      el.style.setProperty('--rvd',(0.04 + idx*0.045).toFixed(3)+'s');
+    });
+  });
+
+  // build the minimalist dot indicator (one per slide, click to jump)
+  const dots = slides.map((_,idx)=>{
+    const b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', (idx+1)+' / '+slides.length);
+    b.onclick = ()=>show(idx);
+    dotsWrap.appendChild(b);
+    return b;
+  });
 
   function show(n){
     i = Math.max(0, Math.min(slides.length-1, n));
     slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
-    counter.textContent = (i+1)+' / '+slides.length;
-    progress.style.width = ((i+1)/slides.length*100)+'%';
+    dots.forEach((d,idx)=>d.classList.toggle('on', idx===i));
+    // replay reveal on the active slide
+    slides[i].querySelectorAll('[data-rv]').forEach(el=>{
+      el.style.animation='none';
+      void el.offsetWidth;      // force reflow
+      el.style.animation='';
+    });
   }
-  function next(){show(i+1)}
-  function prev(){show(i-1)}
+  const next = ()=>show(i+1);
+  const prev = ()=>show(i-1);
 
   document.getElementById('next').onclick = next;
   document.getElementById('prev').onclick = prev;
@@ -656,18 +759,18 @@
   document.getElementById('zL').onclick = prev;
 
   document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ') {next(); e.preventDefault();}
-    else if(e.key==='ArrowLeft'||e.key==='PageUp') {prev(); e.preventDefault();}
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){ next(); e.preventDefault(); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ prev(); e.preventDefault(); }
     else if(e.key==='Home') show(0);
     else if(e.key==='End') show(slides.length-1);
-    else if(e.key==='f'||e.key==='F'){ if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+    else if(e.key==='f'||e.key==='F'){ document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
   });
 
-  // fit stage to viewport
+  // fit 1280×720 stage to viewport
   const stage = document.getElementById('stage');
   function fit(){
-    const pad = 40;
-    const sx = (window.innerWidth - pad) / 1280;
+    const pad = 48;
+    const sx = (window.innerWidth  - pad) / 1280;
     const sy = (window.innerHeight - pad) / 720;
     stage.style.transform = 'scale(' + Math.min(sx, sy, 1.4) + ')';
   }
