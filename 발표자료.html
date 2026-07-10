@@ -326,6 +326,14 @@
   .row-item p b{color:var(--ink);font-weight:700}
   .sub-ex{font-size:15px;color:var(--muted);margin-top:8px}
 
+  /* ---- roomy stack variant: fewer, larger balanced boxes ---- */
+  .content.center{align-items:center}
+  .stack.roomy{gap:30px;justify-content:center}
+  .stack.roomy .row-item{padding:34px 40px;border-radius:24px}
+  .stack.roomy .row-item h3{margin-bottom:8px}
+  .stack.roomy .row-item p{line-height:1.65}
+  .stack.roomy .sub-ex{margin-top:10px}
+
   /* ============================================================
      CHROME — side arrows / dot indicator / hint
      ============================================================ */
@@ -756,8 +764,8 @@
     <div class="kicker" data-rv><span class="dot"></span>HIDDEN MISSION</div>
     <h1 class="slide-title" data-rv>히든 미션 대응 방안</h1>
     <div class="rule" data-rv></div>
-    <div class="content">
-      <div class="stack">
+    <div class="content center">
+      <div class="stack roomy">
         <div class="row-item" data-rv>
           <span class="step-num r-num">①</span>
           <div>
@@ -800,10 +808,17 @@
       <div class="stack">
         <div class="row-item" data-rv><span class="step-num r-num">1</span><div><h3>초기 사용자 확보</h3><p>카메라 배송 등 초기 진입 장벽, 습관 형성 전 이탈 리스크 → <b>온보딩·초기 무료 체험</b>으로 완화</p></div></div>
         <div class="row-item" data-rv><span class="step-num r-num">2</span><div><h3>진단 정확도</h3><p>촬영 환경(조명·거리) 편차에 따른 신뢰도 한계 → <b>촬영 가이드 UI</b>로 보완</p></div></div>
-        <div class="row-item" data-rv><span class="step-num r-num">3</span><div><h3>이미지 생성 의존</h3><p>5년 후 예측이 외부 생성 서비스에 의존(Claude API 이미지 생성 미지원) → <b>비용·안정성 관리</b> 필요</p></div></div>
-        <div class="row-item" data-rv><span class="step-num r-num">4</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
+        <div class="row-item" data-rv><span class="step-num r-num">3</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
       </div>
     </div>
+  </section>
+
+  <!-- 20. 서비스 시연 -->
+  <section class="slide divider">
+    <div class="kicker" data-rv><span class="dot"></span>DEMO</div>
+    <h1 data-rv>서비스 시연</h1>
+    <div class="rule" data-rv></div>
+    <p data-rv>지금부터 실제 앱 화면으로 My Beauty PT의 핵심 기능을 시연합니다</p>
   </section>
 
 </div>
