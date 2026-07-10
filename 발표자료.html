@@ -171,9 +171,9 @@
   .oneliner b{color:var(--accent-soft);font-weight:700}
 
   /* ---- cover two-column layout ---- */
-  .cover-grid{display:grid;grid-template-columns:440px 1fr;align-items:stretch;gap:34px;width:100%;flex:1;min-height:0}
-  .cover-left{display:flex;flex-direction:column;justify-content:center;grid-column:2}
-  .cover-right{position:relative;grid-column:1}
+  .cover-grid{display:grid;grid-template-columns:1fr 440px;align-items:stretch;gap:34px;width:100%;flex:1;min-height:0}
+  .cover-left{display:flex;flex-direction:column;justify-content:center;grid-column:1}
+  .cover-right{position:relative;grid-column:2}
   .app-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
   .cover-phone{width:280px;height:560px}
 
@@ -343,6 +343,7 @@
 
   .hint{position:fixed;bottom:26px;right:28px;font-size:12px;color:var(--muted);opacity:.4;z-index:40;transition:opacity .5s var(--ease)}
   .hint:hover{opacity:1}
+  .slidenum{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--muted);opacity:.35;z-index:40;letter-spacing:.3px}
   .clickzone{position:fixed;top:0;bottom:80px;width:18%;z-index:30;cursor:pointer}
   #zL{left:0}#zR{right:0}
 
@@ -374,8 +375,8 @@
         <div class="logo-mark" data-rv><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 8C50 8 20 44 20 64a30 30 0 0 0 60 0C80 44 50 8 50 8Z"/></svg></div>
         <div class="brand-badge" data-rv>✦ PERSONAL BEAUTY TRAINER</div>
         <h1 data-rv><span class="en">My Beauty PT</span></h1>
-        <div class="ko" data-rv>마이 뷰티 PT — 퍼스널 뷰티 트레이너</div>
-        <div class="tagline" data-rv>"오늘의 관리가 5년 후 내 피부를 바꾼다<br>— 그 변화를 미리 보여드릴게요."</div>
+        <div class="ko" data-rv>퍼스널 뷰티 트레이너</div>
+        <div class="tagline" data-rv>몰라도 돼요. 안 해도 돼요.<br>— My Beauty PT가 대신 다 챙겨드릴게요.</div>
         <div class="oneliner" data-rv>매일 진단부터 맞춤 제품 배송까지, 알아서 챙겨주는 <b>AI 뷰티 트레이너</b></div>
       </div>
       <div class="cover-right">
@@ -455,9 +456,9 @@
           <h3>🚀 미래 <span>확장 시나리오</span></h3>
           <ul>
             <li>기존 사용자의 <b>30대 진입</b>에 따른 라이프사이클 확장</li>
-            <li><b>60·70대 부모님 세대</b>(안티에이징)로 확산</li>
-            <li><b>30대 남성</b>(그루밍)으로 타깃 확대</li>
+            <li><b>핵심 타깃(20대 중후반 직장인 여성)</b>에서 파생되는 서브 타깃(결혼 후 남편 등)으로 확장 가능</li>
             <li>연령·성별별 고민에 맞춘 진단 커리큘럼으로 대응</li>
+            <li>피부 고민에 예민한 <b>10대 타깃</b>도 타깃 확장 예정</li>
           </ul>
         </div>
       </div>
@@ -472,8 +473,8 @@
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="cards3">
-        <div class="card" data-rv><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3><p>진단·탐색·구매·관리의 단계마다 노력이 들어 <b>시작조차 어렵다</b></p></div>
-        <div class="card" data-rv><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3><p>하루 이틀 하다가 이유·보상이 없어 <b>금방 그만둔다</b></p></div>
+        <div class="card" data-rv><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3><p>진단·탐색·구매·관리의 단계마다 노력이 들어 <b>귀찮다</b><br>→ 왜?<br>- 피부 관리가 필수 사항이라는 인식이 부족하기 때문<br>- 본인의 '루틴'에 속해있지 않기 때문</p></div>
+        <div class="card" data-rv><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3><p>하루이틀 하다가 <b>금방 그만둔다</b><br>→ 왜?<br>매일 진단과 관리를 지속해야 할 동기가 부족하기 때문</p></div>
         <div class="card" data-rv><div class="barnum">3</div><div class="c-ico">🕶️</div><h3>현실감 부족</h3><p>"지금 안 해도 괜찮겠지" — 관리의 효과가 <b>눈에 보이지 않는다</b></p></div>
       </div>
     </div>
@@ -530,7 +531,7 @@
     <div class="kicker" data-rv><span class="dot"></span>SOLUTION 01</div>
     <h1 data-rv>① 귀찮음 해소</h1>
     <div class="rule" data-rv></div>
-    <p data-rv>진단·탐색·구매·관리의 모든 단계에서 사용자의 노력을 최소화한다</p>
+    <p data-rv>진단·탐색·구매·관리의 모든 단계에서 사용자의 노력을 최소화한다<br>피부 관리를 매일 지킬 수 있는 하나의 자동화된 루틴으로 만든다</p>
   </section>
 
   <!-- 7 -->
@@ -617,7 +618,7 @@
     <div class="kicker" data-rv><span class="dot"></span>SOLUTION 02</div>
     <h1 data-rv>② 지속적인 동기 · 락인</h1>
     <div class="rule" data-rv></div>
-    <p data-rv>계속할 이유와 보상을 만들어 이탈을 막고 습관으로 굳힌다</p>
+    <p data-rv>매일 진단과 관리를 지속해야 할 강제적/선택적 동기를 제공한다</p>
   </section>
 
   <!-- 11 -->
@@ -632,7 +633,7 @@
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
             <li data-rv>설정 시간에 알림 → 진단을 <b>'기억해야 하는 일'에서 '챙겨주는 일'로 전환</b></li>
-            <li data-rv>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관</b> 형성</li>
+            <li data-rv>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관을 강제적으로 형성</b></li>
           </ul>
         </div>
       </div>
@@ -810,6 +811,7 @@
 <button class="edge-nav" id="next" aria-label="다음 슬라이드"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
 <div class="dots" id="dots" role="tablist" aria-label="슬라이드 이동"></div>
 <div class="hint">← → 이동 · F 전체화면</div>
+<div class="slidenum" id="slidenum"></div>
 
 <script>
   const slides = [...document.querySelectorAll('.slide')];
@@ -833,10 +835,13 @@
     return b;
   });
 
+  const slidenum = document.getElementById('slidenum');
+
   function show(n){
     i = Math.max(0, Math.min(slides.length-1, n));
     slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
     dots.forEach((d,idx)=>d.classList.toggle('on', idx===i));
+    slidenum.textContent = (i+1) + ' / ' + slides.length;
     // replay reveal on the active slide
     slides[i].querySelectorAll('[data-rv]').forEach(el=>{
       el.style.animation='none';
