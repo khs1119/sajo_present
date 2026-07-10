@@ -142,13 +142,15 @@
   ul.pts{list-style:none;display:flex;flex-direction:column;gap:16px;font-size:18px;line-height:1.55}
   ul.pts li{
     position:relative;color:var(--ink-soft);
-    padding:18px 22px 18px 24px;
-    border-radius:16px;
-    background:var(--glass-2);
-    border:1px solid var(--line-soft);
-    border-left:3px solid var(--accent);
+    padding:21px 26px;
+    border-radius:20px;
+    background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,252,250,.85));
+    backdrop-filter:blur(12px) saturate(150%);
+    -webkit-backdrop-filter:blur(12px) saturate(150%);
+    border:1px solid rgba(120,60,50,.06);
+    box-shadow:0 26px 50px -36px rgba(200,90,70,.30), inset 0 1px 0 rgba(255,255,255,.95);
   }
-  ul.pts b{color:var(--ink);font-weight:700}
+  ul.pts b{color:var(--accent-deep);font-weight:800}
 
   /* ---- number chip ---- */
   .step-num{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 9px;border-radius:11px;background:var(--grad);color:#fff;font-weight:800;font-size:16px;box-shadow:0 10px 22px -8px rgba(255,110,95,.5)}
@@ -245,14 +247,14 @@
      ============================================================ */
   .feat{display:grid;grid-template-columns:290px 1fr;gap:52px;align-items:center;width:100%;align-self:center;margin-top:4px}
   .phone{
-    width:228px;height:456px;border-radius:38px;
-    background:linear-gradient(180deg,#2b2733,#17141d);
-    padding:11px;position:relative;margin:0 auto;justify-self:center;
-    box-shadow:0 40px 72px -32px rgba(120,50,40,.5), inset 0 0 0 1px rgba(255,255,255,.08);
+    width:228px;height:456px;border-radius:44px;
+    background:linear-gradient(165deg,#3a3542,#151219);
+    padding:5px;position:relative;margin:0 auto;justify-self:center;
+    box-shadow:0 50px 90px -30px rgba(120,50,40,.42), 0 10px 26px -12px rgba(30,15,15,.35), inset 0 0 0 1px rgba(255,255,255,.10), inset 0 1px 1px rgba(255,255,255,.16);
   }
-  .phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:86px;height:18px;border-radius:11px;background:#0b090f;z-index:3}
+  .phone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);width:52px;height:6px;border-radius:6px;background:#0a0810;z-index:3;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
   .phone-screen{
-    width:100%;height:100%;border-radius:28px;overflow:hidden;
+    width:100%;height:100%;border-radius:40px;overflow:hidden;
     background:radial-gradient(130% 80% at 50% 0%,#ffffff,#fff1ec 100%);
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
     text-align:center;padding:24px;position:relative;
@@ -263,7 +265,8 @@
   .phone-screen .ph-badge{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:var(--accent-deep);padding:5px 13px;border-radius:20px}
 
   .feat-text{display:flex;flex-direction:column}
-  .feat-text .grp-tag{display:inline-flex;align-items:center;font-size:13px;font-weight:800;letter-spacing:1.6px;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:8px 16px;border-radius:22px;margin-bottom:22px;align-self:flex-start}
+  .feat-text .grp-tag{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;letter-spacing:2.6px;color:var(--accent-soft);margin-bottom:22px;align-self:flex-start}
+  .feat-text .grp-tag::before{content:"";width:18px;height:2px;border-radius:2px;background:var(--grad);box-shadow:0 0 10px var(--accent-glow)}
 
   /* ============================================================
      FLOW (slide 5)
@@ -515,7 +518,7 @@
         </div>
         <div class="dev-item" data-rv>
           <div class="d-ico">🎙️</div>
-          <div><h3>음성인식 기능</h3><p>Web Speech API(STT/TTS) 기반 음성 진단 + Claude API 연동 — 타이핑 없이 <b>대화형 진단</b>, 답변은 스프레드시트에 누적 저장</p></div>
+          <div><h3>음성인식 기능</h3><p>Web Speech API(STT/TTS) 기반 음성 진단 — 타이핑 없이 <b>대화형 진단</b>, 답변은 스프레드시트에 누적 저장</p></div>
         </div>
         <div class="dev-item" data-rv>
           <div class="d-ico">🤖</div>
@@ -565,7 +568,7 @@
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
             <li data-rv>진단 시간을 한 번 설정하면 매일 같은 시간에 <b>자동으로 켜짐</b> → "언제 할지" 결정하는 부담 제거, 자연스러운 루틴화</li>
-            <li data-rv>'진단 시간 변경'으로 아침 준비·나이트 루틴 등 <b>내 생활 패턴에 맞게</b> 언제든 재설정</li>
+            <li data-rv>설정 시간에 자동으로 앱 on → 진단을 <b>'기억하고 직접 실행해야 하는 일'에서 '알아서 챙겨주는 일'로 전환</b></li>
           </ul>
         </div>
       </div>
@@ -624,15 +627,15 @@
   <!-- 11 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>정해진 시간에 진단 알림 & 자동 앱 ON</h1>
+    <h1 class="slide-title" data-rv>정해진 시간에 자동 앱 ON</h1>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔔</div><div class="ph-t">진단 알림</div><div class="ph-s">'기억할 일'에서<br>'챙겨주는 일'로</div></div></div>
+        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔔</div><div class="ph-t">진단 시간 변경</div><div class="ph-s">내 생활 패턴에 맞게<br>언제든 재설정</div></div></div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>설정 시간에 알림 → 진단을 <b>'기억해야 하는 일'에서 '챙겨주는 일'로 전환</b></li>
+            <li data-rv>'진단 시간 변경'으로 아침 준비·나이트 루틴 등 <b>내 생활 패턴에 맞게</b> 언제든 재설정</li>
             <li data-rv>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관을 강제적으로 형성</b></li>
           </ul>
         </div>
@@ -663,7 +666,7 @@
   <!-- 13 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>포인트 제도</h1>
+    <h1 class="slide-title" data-rv>포인트 제도 및 환급 제도</h1>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
@@ -674,6 +677,7 @@
             <li data-rv>출석 및 피부관리를 통한 <b>포인트 적립</b> — 행동별 포인트로 게이미피케이션</li>
             <li data-rv><b>이용자 내 순위 노출</b>로 경쟁심 자극 · 매주 월요일 00:00 초기화</li>
             <li data-rv>적립 포인트를 <b>혜택으로 전환</b></li>
+            <li data-rv><b>장기 연속 출석 시 일정 금액 환급 제도</b> 시행</li>
           </ul>
         </div>
       </div>
