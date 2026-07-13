@@ -168,11 +168,12 @@
   .logo-mark{width:78px;height:78px;border-radius:22px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 44px -16px rgba(255,120,100,.55);margin-bottom:20px}
   .logo-mark svg{width:42px;height:42px}
   .brand-badge{font-size:14px;font-weight:800;letter-spacing:3px;color:var(--accent-soft)}
+  .brand-badge .cycle-word{display:inline-block;min-width:112px;text-align:left;transition:opacity .35s ease,transform .35s ease}
+  .brand-badge .cycle-word.cyc-out{opacity:0;transform:translateY(7px)}
   .cover h1{font-size:72px;font-weight:900;letter-spacing:-1.5px;line-height:1.02;margin:14px 0 6px}
   .cover h1 .en{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .cover .ko{font-size:19px;font-weight:600;color:var(--accent-soft);margin-bottom:26px;letter-spacing:.4px}
-  .tagline{font-size:24px;font-weight:700;color:var(--ink);border-left:3px solid var(--accent);padding-left:20px;line-height:1.5}
-  .oneliner{margin-top:22px;font-size:18.5px;color:var(--ink-soft);line-height:1.55}
+  .tagline{font-size:24px;font-weight:700;color:var(--ink);border-left:3px solid var(--accent);padding-left:20px;line-height:1.75;margin-top:26px}
+  .oneliner{margin-top:24px;font-size:18.5px;color:var(--ink-soft);line-height:1.8}
   .oneliner b{color:var(--accent-soft);font-weight:700}
 
   /* ---- cover two-column layout ---- */
@@ -233,6 +234,11 @@
   .divider h1{font-size:60px;font-weight:900;letter-spacing:-1px;color:#fff;margin-top:12px;position:relative;z-index:1}
   .divider p{font-size:23px;color:#fff2ea;margin-top:8px;max-width:780px;line-height:1.5;position:relative;z-index:1}
   .divider .rule{margin:22px 0;background:rgba(255,255,255,.85);box-shadow:none}
+  .qr-card{position:absolute;right:96px;top:50%;transform:translateY(-50%);z-index:2;
+    background:#fff;border-radius:22px;padding:22px 22px 18px;text-align:center;
+    box-shadow:0 40px 70px -24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.9)}
+  .qr-card img{width:176px;height:176px;display:block;border-radius:10px}
+  .qr-card .qr-label{display:block;margin-top:12px;font-size:14px;font-weight:800;color:var(--ink)}
 
   /* ============================================================
      IMAGE ROW (slide 2)
@@ -258,24 +264,24 @@
   .mm-core{position:absolute;left:16%;top:50%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;
     background:var(--grad);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
     box-shadow:0 34px 68px -14px rgba(255,110,95,.65), inset 0 3px 0 rgba(255,255,255,.45), inset 0 -18px 34px rgba(190,60,45,.28);z-index:4}
-  .mm-core b{font-size:62px;font-weight:900;letter-spacing:-2.5px;line-height:1;text-shadow:0 4px 14px rgba(150,40,30,.3)}
+  .mm-core b{font-size:62px;font-weight:700;letter-spacing:-2.5px;line-height:1;text-shadow:0 4px 14px rgba(150,40,30,.3)}
   .mm-core span{font-size:12.5px;font-weight:800;letter-spacing:3px;opacity:.92;margin-top:8px}
   /* branch nodes: circular photo + text, color-coded, fanned to the right */
-  .mm-node{position:absolute;width:58%;transform:translateY(-50%);display:flex;align-items:center;gap:20px;z-index:3;
+  .mm-node{position:absolute;width:58%;transform:translateY(-50%);display:flex;align-items:center;gap:26px;z-index:3;
     background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,251,249,.84));border:1px solid rgba(120,60,50,.07);
-    border-radius:72px;padding:16px 30px 16px 16px;
+    border-radius:72px;padding:22px 36px 22px 20px;
     box-shadow:0 28px 52px -30px rgba(200,90,70,.5), inset 0 1px 0 rgba(255,255,255,.92)}
-  .mm-node .mm-ph{width:122px;height:122px;border-radius:50%;overflow:hidden;flex:0 0 auto;
+  .mm-node .mm-ph{width:128px;height:128px;border-radius:50%;overflow:hidden;flex:0 0 auto;
     box-shadow:0 0 0 5px #fff, 0 0 0 8px var(--c), 0 16px 30px -12px color-mix(in srgb,var(--c) 55%,transparent)}
   .mm-node .mm-ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
   .mm-node .mm-tag{display:inline-block;font-size:14.5px;font-weight:800;letter-spacing:.5px;color:var(--c);
     background:color-mix(in srgb,var(--c) 13%,#fff);border:1px solid color-mix(in srgb,var(--c) 32%,transparent);
-    padding:6px 15px;border-radius:20px;margin-bottom:10px}
-  .mm-node p{font-size:19.5px;line-height:1.48;color:var(--ink-soft);margin:0;font-weight:500}
+    padding:6px 15px;border-radius:20px;margin-bottom:13px}
+  .mm-node p{font-size:20.5px;line-height:1.56;color:var(--ink-soft);margin:0;font-weight:500}
   .mm-node p b{color:var(--c);font-weight:800}
-  .mm-node.n1{left:34%;top:17%;--c:#F5713F}
+  .mm-node.n1{left:34%;top:11%;--c:#F5713F}
   .mm-node.n2{left:36%;top:50%;--c:#E0930F}
-  .mm-node.n3{left:34%;top:83%;--c:#EC5F86}
+  .mm-node.n3{left:34%;top:89%;--c:#EC5F86}
 
   /* ============================================================
      FEATURE (phone + text)
@@ -300,9 +306,14 @@
   .phone-screen .ph-badge{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:var(--accent-deep);padding:5px 13px;border-radius:20px}
 
   /* ---- real app screenshots (phone frame removed, screen only) ---- */
-  .feat.media{grid-template-columns:auto 1fr;gap:50px}
-  .shots{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto}
+  .feat.media{grid-template-columns:1fr auto;gap:42px;align-items:start;align-self:start}
+  .feat.media .feat-text{max-width:440px}
+  .feat.media.tight .feat-text{max-width:380px}
+  .shots{display:flex;align-items:flex-start;justify-content:center;gap:18px;margin:0 auto}
+  .feat.media .shots{margin-top:-26px}
   .shots.stack{flex-direction:column;gap:16px}
+  .shots.top-stack{flex-direction:column;align-items:center;gap:14px}
+  .shots.top-stack .shots{margin:0}
   .shot{
     display:block;border-radius:22px;background:#fff;
     border:1px solid rgba(120,60,50,.10);
@@ -311,7 +322,7 @@
   .shot.tall{height:436px;width:auto}    /* single full-height screen */
   .shot.duo{height:400px;width:auto}     /* two full-height screens in a row */
   .shot.trio{height:344px;width:auto}    /* three full-height screens in a row */
-  .shot.wide{width:256px;height:auto}    /* short landscape fragment (stacked) */
+  .shot.wide{width:400px;height:auto}    /* short landscape fragment (stacked) */
 
   .feat-text{display:flex;flex-direction:column}
   .feat-text .grp-tag{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;letter-spacing:2.6px;color:var(--accent-soft);margin-bottom:22px;align-self:flex-start}
@@ -339,6 +350,14 @@
   .card p{font-size:17px;color:var(--ink-soft);line-height:1.6}
   .card p b, .card h3 b{color:var(--accent-soft);font-weight:700}
   .card .barnum{position:absolute;right:18px;top:8px;font-size:64px;font-weight:900;color:rgba(255,133,116,.12);letter-spacing:-2px}
+  .card .c-lead-box{min-height:78px;display:flex;align-items:center;margin-bottom:16px}
+  .card p.c-lead{font-size:16.5px;color:var(--ink-soft);line-height:1.55;margin:0}
+  .card p.c-lead b{color:var(--accent-soft);font-weight:700}
+  .card .c-why{padding-top:14px;border-top:1px dashed var(--line-soft)}
+  .card .why-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--accent-deep);background:var(--accent-glow);padding:4px 10px;border-radius:8px;margin-bottom:10px}
+  .card .why-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .card .why-list li{position:relative;padding-left:14px;font-size:14.5px;color:var(--ink-soft);line-height:1.5}
+  .card .why-list li::before{content:"–";position:absolute;left:0;top:0;color:var(--muted);font-weight:700}
 
   /* ============================================================
      PERSONA (2 columns)
@@ -425,6 +444,18 @@
   .stack.roomy .row-item p{line-height:1.65}
   .stack.roomy .sub-ex{margin-top:10px}
 
+  /* ---- hm-grid: 2-column side-by-side variant (hidden mission), each card carries its own screenshot ---- */
+  .stack.roomy.hm-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%;align-items:start}
+  .hm-grid .row-item{flex-direction:column;align-items:stretch}
+  .content.mega .hm-grid .row-item{padding:18px 28px}
+  .hm-grid .hm-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .hm-grid .hm-head h3{margin-bottom:0}
+  .content.mega .hm-grid .row-item p{font-size:16.5px;line-height:1.44}
+  .hm-grid .sub-ex{margin-top:6px}
+  .hm-grid .hm-shot{margin-top:10px;display:flex;justify-content:center;gap:12px}
+  .hm-grid .hm-shot img{width:160px;border-radius:14px;box-shadow:0 24px 44px -22px rgba(200,90,70,.4), 0 6px 16px -8px rgba(30,15,15,.18);border:1px solid rgba(120,60,50,.10)}
+  .content.mega .hm-grid .mrk{width:52px;height:52px;font-size:26px;margin:0}
+
   /* ============================================================
      CHROME — side arrows / dot indicator / hint
      ============================================================ */
@@ -496,13 +527,12 @@
 
   <!-- 1. COVER -->
   <section class="slide cover active">
-    <div class="note-pill">사랑반 4조 · 3+1=4</div>
+    <div class="note-pill">사랑반 4조</div>
     <div class="cover-grid">
       <div class="cover-left">
         <div class="logo-mark" data-rv><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 8C50 8 20 44 20 64a30 30 0 0 0 60 0C80 44 50 8 50 8Z"/></svg></div>
-        <div class="brand-badge" data-rv>✦ PERSONAL BEAUTY TRAINER</div>
+        <div class="brand-badge" data-rv>✦ PERSONAL BEAUTY <span class="cycle-word" id="cycleWord">TRAINER</span></div>
         <h1 data-rv><span class="en">My Beauty PT</span></h1>
-        <div class="ko" data-rv>Personal Beauty Trainer / Treatment / Therapy</div>
         <div class="tagline" data-rv>몰라도 돼요. 안 해도 돼요.<br>— My Beauty PT가 대신 다 챙겨드릴게요.</div>
         <div class="oneliner" data-rv>매일 진단부터 맞춤 제품 배송까지, 알아서 챙겨주는 <b>AI 뷰티 트레이너</b></div>
       </div>
@@ -551,14 +581,14 @@
         <span class="mm-orbit o2"></span>
         <span class="mm-orbit o1"></span>
         <svg class="mm-lines" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M160,250 C250,250 320,86 407,86" stroke="#F5713F"/>
+          <path d="M160,250 C250,250 320,55 407,55" stroke="#F5713F"/>
           <path d="M160,250 L427,250" stroke="#E0930F"/>
-          <path d="M160,250 C250,250 320,414 407,414" stroke="#EC5F86"/>
+          <path d="M160,250 C250,250 320,445 407,445" stroke="#EC5F86"/>
         </svg>
-        <div class="mm-core"><b>Why?</b><span>기획 배경</span></div>
+        <div class="mm-core"><b>Why?</b></div>
         <div class="mm-node n1">
           <div class="mm-ph"><img src="assets/tired-worker.png" alt="바쁜 직장인"></div>
-          <div class="mm-tx"><span class="mm-tag">귀찮음</span><p>야근에 지친 바쁜 직장인 — 관리에 쓸 <b>시간·에너지</b>가 없다</p></div>
+          <div class="mm-tx"><span class="mm-tag">귀찮음</span><p>관리에 쓸 <b>시간·에너지</b>가 없다</p></div>
         </div>
         <div class="mm-node n2">
           <div class="mm-ph"><img src="assets/big-data.png" alt="데이터 예측"></div>
@@ -566,7 +596,7 @@
         </div>
         <div class="mm-node n3">
           <div class="mm-ph"><img src="assets/sun-damage.png" alt="선크림 예시"></div>
-          <div class="mm-tx"><span class="mm-tag">현실감</span><p>선크림 예시 — 누적된 관리 차이가 <b>5년·10년 뒤</b>를 가른다</p></div>
+          <div class="mm-tx"><span class="mm-tag">현실감</span><p>누적된 관리 차이가 <b>5년·10년 뒤</b>를 가른다</p></div>
         </div>
       </div>
     </div>
@@ -614,9 +644,32 @@
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="cards3">
-        <div class="card" data-rv><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3><p>진단·탐색·구매·관리의 단계마다 노력이 들어 <b>귀찮다</b><br>→ 왜?<br>- 피부 관리가 필수 사항이라는 인식이 부족하기 때문<br>- 본인의 '루틴'에 속해있지 않기 때문</p></div>
-        <div class="card" data-rv><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3><p>하루이틀 하다가 <b>금방 그만둔다</b><br>→ 왜?<br>매일 진단과 관리를 지속해야 할 동기가 부족하기 때문</p></div>
-        <div class="card" data-rv><div class="barnum">3</div><div class="c-ico">🕶️</div><h3>현실감 부족</h3><p>"지금 안 해도 괜찮겠지" — 관리의 효과가 <b>눈에 보이지 않는다</b></p></div>
+        <div class="card" data-rv><div class="barnum">1</div><div class="c-ico">😮‍💨</div><h3>귀찮음</h3>
+          <div class="c-lead-box"><p class="c-lead">진단·탐색·구매·관리의 단계마다 노력이 들어 <b>귀찮다</b></p></div>
+          <div class="c-why"><span class="why-tag">WHY?</span>
+            <ul class="why-list">
+              <li>피부 관리가 필수 사항이라는 인식이 부족하기 때문</li>
+              <li>본인의 '루틴'에 속해있지 않기 때문</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" data-rv><div class="barnum">2</div><div class="c-ico">📉</div><h3>지속적인 동기 부족</h3>
+          <div class="c-lead-box"><p class="c-lead">하루이틀 하다가 <b>금방 그만둔다</b></p></div>
+          <div class="c-why"><span class="why-tag">WHY?</span>
+            <ul class="why-list">
+              <li>매일 진단과 관리를 지속해야 할 동기가 부족하기 때문</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" data-rv><div class="barnum">3</div><div class="c-ico">🕶️</div><h3>현실감 부족</h3>
+          <div class="c-lead-box"><p class="c-lead">지금 피부 관리 안 해도 <b>괜찮겠지</b> 생각한다</p></div>
+          <div class="c-why"><span class="why-tag">WHY?</span>
+            <ul class="why-list">
+              <li>관리 유무의 차이가 눈에 보이지 않기 때문</li>
+              <li>피부 변화는 단기간에 체감하기 어렵기 때문</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -703,15 +756,15 @@
     <div class="subhead" data-rv>촬영 외 모든 진단은 음성 설문으로</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s01-voice.png" alt="음성 진단 화면"></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>촬영을 뺀 생활습관 진단(수면·물·스트레스·운동)을 <b>타이핑 없이 목소리로</b> — 손이 바쁜 아침/취침 전에도 부담 없이 완료</li>
+            <li data-rv>촬영을 뺀 생활습관 진단(수면·물·스트레스·운동)을 <b>타이핑 없이 목소리로</b><br>손이 바쁜 아침/취침 전에도 부담 없이 완료</li>
             <li data-rv>AI가 질문을 읽어주고(TTS) 사용자가 말하면 자동 변환(STT) → <b>AI와 대화하듯 양방향</b></li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:300px" src="assets/shots/clean-hq08-voice.png" alt="음성 진단 화면"></div>
       </div>
     </div>
   </section>
@@ -723,15 +776,15 @@
     <div class="subhead" data-rv>매일 설정해둔 같은 시간에 자동 진단 ON</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s02-time.png" alt="정해진 시간 자동 진단 설정 화면"></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>진단 시간을 한 번 설정하면 매일 같은 시간에 <b>자동으로 켜짐</b> → "언제 할지" 결정하는 부담 제거, 자연스러운 루틴화</li>
+            <li data-rv>진단 시간을 한 번 설정하면 매일 같은 시간에 <b>자동으로 켜짐</b> → 언제 할지 결정하는 부담 제거, 자연스러운 루틴화</li>
             <li data-rv>설정 시간에 자동으로 앱 on → 진단을 <b>'기억하고 직접 실행해야 하는 일'에서 '알아서 챙겨주는 일'로 전환</b></li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:300px" src="assets/shots/clean-s02-time.png" alt="정해진 시간 자동 진단 설정 화면"></div>
       </div>
     </div>
   </section>
@@ -743,20 +796,16 @@
     <div class="subhead" data-rv>피부 진단 기반 맞춤형 제품을 매주 자동 추천</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots" data-rv>
-          <img class="shot trio" src="assets/shots/s03a-reco-card.png" alt="맞춤 제품 추천 화면">
-          <img class="shot trio" src="assets/shots/s03b-reco-detail.png" alt="추천 성분 근거 화면">
-          <img class="shot trio" src="assets/shots/s03c-reco-tip.png" alt="이번주 사용 TIP 화면">
-        </div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>제품 탐색·비교 필요 X — "촬영 데이터 + 음성 답변을 함께 분석해서 골랐어요"로 <b>선택 피로 제거</b></li>
+            <li data-rv>제품 탐색·비교 필요 X 촬영 데이터 + 음성 답변을 함께 분석해서 제품 추천 → <b>선택 피로 제거</b></li>
             <li data-rv>단순 추천이 아니라 <b>데이터 근거 성분 + 이번주 사용 TIP</b>까지 제공 → 왜 이 제품인지, 어떻게 쓰는지 자동 안내</li>
             <li data-rv>코스맥스/고객사 제조 제품 중 <b>진단 수치 기반 매칭</b></li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:300px" src="assets/shots/clean-s03a-reco-card.png" alt="맞춤 제품 추천 화면"></div>
       </div>
     </div>
   </section>
@@ -768,11 +817,7 @@
     <div class="subhead" data-rv>주간 추천 제품은 매주 정해진 요일에 자동 배송</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots stack" data-rv>
-          <img class="shot wide" src="assets/shots/s04a-delivery.png" alt="이번주 배송 정보 화면">
-          <img class="shot wide" src="assets/shots/s04b-history.png" alt="최근 사용 내역 화면">
-        </div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -780,6 +825,10 @@
             <li data-rv>진단 결과에 따라 사용량·교체 주기를 유동 조절(우선 1주 소량) → <b>낭비 없이 딱 필요한 만큼만</b></li>
             <li data-rv><b>친환경 용기 배송</b>으로 구독형 소비의 환경 부담 완화</li>
           </ul>
+        </div>
+        <div class="shots stack" data-rv>
+          <img class="shot wide" src="assets/shots/s04a-delivery.png" alt="이번주 배송 정보 화면">
+          <img class="shot wide" src="assets/shots/s04b-history.png" alt="최근 사용 내역 화면">
         </div>
       </div>
     </div>
@@ -801,8 +850,7 @@
     <div class="subhead" data-rv>진단 시간 설정 시 정해진 시간에 자동 앱 작동</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s05-time2.png" alt="진단 시간 변경 화면"></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -810,6 +858,7 @@
             <li data-rv>굳이 기억하거나 앱을 켜지 않아도 <b>자연스러운 진단 습관을 강제적으로 형성</b></li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:300px" src="assets/shots/clean-s05-time2.png" alt="진단 시간 변경 화면"></div>
       </div>
     </div>
   </section>
@@ -822,17 +871,17 @@
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
-        <div class="shots" data-rv>
-          <img class="shot duo" src="assets/shots/s06a-report-trend.png" alt="주차별 추이 리포트 화면">
-          <img class="shot duo" src="assets/shots/s06b-report-score.png" alt="주차 리포트 점수 화면">
-        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>매주 리포트로 <b>"지난주 대비 내 피부 변화"</b>를 정기 확인 → 계속할 이유 제공</li>
-            <li data-rv>리포트–제품이 세트로 도착 → "받은 제품을 써야 다음 리포트가 의미 있다"는 <b>사용 루프(락인)</b> 형성</li>
-            <li data-rv>진단을 빼먹으면 "빼먹을수록 리포트 정확도가 떨어져요" 안내 → <b>꾸준한 참여 유도</b></li>
+            <li data-rv>매주 리포트로 <b>지난주 대비 내 피부 변화</b>를 정기 확인 → 계속할 이유 제공</li>
+            <li data-rv>리포트–제품이 세트로 도착 → 받은 제품을 써야 다음 리포트가 의미 있다는 <b>사용 루프(락인)</b> 형성</li>
+            <li data-rv>진단을 빼먹으면 '빼먹을수록 리포트 정확도가 떨어져요' 안내 → <b>꾸준한 참여 유도</b></li>
           </ul>
+        </div>
+        <div class="shots" data-rv>
+          <img class="shot" style="width:230px" src="assets/shots/clean-s06a-report-trend.png" alt="주차별 추이 리포트 화면">
+          <img class="shot" style="width:230px" src="assets/shots/clean-s06b-report-score.png" alt="주차 리포트 점수 화면">
         </div>
       </div>
     </div>
@@ -842,21 +891,22 @@
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
     <h1 class="slide-title" data-rv>포인트 · 환급 제도</h1>
+    <div class="subhead" data-rv>출석·관리 활동으로 포인트를 적립하고 혜택·환급으로 전환</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
-        <div class="shots" data-rv>
-          <img class="shot duo" src="assets/shots/s07a-point-rank.png" alt="포인트 경쟁 랭킹 화면">
-          <img class="shot duo" src="assets/shots/s07b-point-att.png" alt="포인트 적립·출석 현황 화면">
-        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>출석 및 피부관리를 통한 <b>포인트 적립</b> — 행동별 포인트로 게이미피케이션</li>
+            <li data-rv>출석 및 피부관리를 통한 <b>포인트 적립</b> 행동별 포인트로 게이미피케이션</li>
             <li data-rv><b>이용자 내 순위 노출</b>로 경쟁심 자극 · 매주 월요일 00:00 초기화</li>
             <li data-rv>적립 포인트를 <b>혜택으로 전환</b></li>
             <li data-rv><b>장기 연속 출석 시 일정 금액 환급 제도</b> 시행</li>
           </ul>
+        </div>
+        <div class="shots" data-rv>
+          <img class="shot" style="width:280px" src="assets/shots/clean-hq15a-point-rank.png" alt="포인트 경쟁 랭킹 화면">
+          <img class="shot" style="width:280px" src="assets/shots/clean-hq15b-point-att.png" alt="포인트 적립·출석 현황 화면">
         </div>
       </div>
     </div>
@@ -866,10 +916,10 @@
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
     <h1 class="slide-title" data-rv>커뮤니티 서비스</h1>
+    <div class="subhead" data-rv>비슷한 고민을 가진 사용자들과 채팅으로 소통하는 공간</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat media">
-        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s08-community.png" alt="고민별 채팅방 커뮤니티 화면"></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -877,6 +927,7 @@
             <li data-rv>리뷰 작성 시 포인트 지급으로 <b>커뮤니티 참여와 락인을 연결</b></li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:300px" src="assets/shots/clean-s08-community.png" alt="고민별 채팅방 커뮤니티 화면"></div>
       </div>
     </div>
   </section>
@@ -897,16 +948,16 @@
     <div class="subhead" data-rv>직관적인 부위별 / 항목별 시각 분석 자료 제공</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔬</div><div class="ph-t">부위 하이라이트</div><div class="ph-s">모공·유수분·색소<br>레이더 차트</div></div></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>항목(모공·유수분·색소침착·톤·노폐물) 탭 → 내 사진 위 해당 부위 <b>하이라이트</b> → "내 피부가 지금 이렇구나"를 즉시 인지</li>
+            <li data-rv>항목(모공·유수분·색소침착·톤·노폐물) 탭 → 내 사진 위 해당 부위 <b>하이라이트</b> → 내 피부 상태를 즉시 인지</li>
             <li data-rv><b>육각형(레이더) 차트</b> 꼭짓점을 누르면 사진에서 그 부위가 강조 → 수치와 위치를 동시에 확인</li>
             <li data-rv>밤 진단에서 <b>클렌징 후 남은 노폐물</b>을 시각화 → 관리 필요성 체감</li>
           </ul>
         </div>
+        <div class="shots" data-rv><img class="shot" style="width:360px" src="assets/shots/hq18-radar.png" alt="지표별 변화 레이더 차트"></div>
       </div>
     </div>
   </section>
@@ -918,14 +969,20 @@
     <div class="subhead" data-rv>피부 관리 전후 비교 이미지를 시각적으로 제공</div>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🪞</div><div class="ph-t">전후 비교</div><div class="ph-s">어제 · 오늘<br>선택일 vs 전날</div></div></div>
+      <div class="feat media tight">
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
-            <li data-rv>'어제·오늘 비교', '선택일 vs 전날'로 <b>실제 변화를 눈으로 확인</b> → 성취감·지속 동기로 연결</li>
-            <li data-rv>프레이밍은 <b>이득 중심</b> — "걱정을 주는 예측이 아니라, 관리의 효과를 보여주는 예측" → 불안이 아닌 <b>관리 동기로 전환</b></li>
+            <li data-rv>어제/오늘 비교로 <b>실제 변화를 눈으로 확인</b> → 성취감·지속 동기로 연결</li>
+            <li data-rv>프레이밍은 <b>이득 중심</b> 걱정을 주는 예측이 아니라, 관리의 효과를 보여주는 예측<br>불안이 아닌 <b>관리 동기로 전환</b></li>
           </ul>
+        </div>
+        <div class="shots top-stack" data-rv>
+          <img class="shot" style="width:300px" src="assets/shots/hq19c-daily-compare.png" alt="어제·오늘 비교">
+          <div class="shots">
+            <img class="shot" style="width:195px" src="assets/shots/hq19b-future-fair.png" alt="5년 후 관리 효과 - 보통 이하">
+            <img class="shot" style="width:195px" src="assets/shots/hq19a-future-good.png" alt="5년 후 관리 효과 - 좋음">
+          </div>
         </div>
       </div>
     </div>
@@ -937,20 +994,19 @@
     <h1 class="slide-title" data-rv>히든 미션 대응 방안</h1>
     <div class="rule" data-rv></div>
     <div class="content center mega">
-      <div class="stack roomy">
+      <div class="stack roomy hm-grid">
         <div class="row-item" data-rv>
-          <span class="mrk">🛡️</span>
-          <div>
-            <h3>정보 신뢰성 확보</h3>
-            <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>19만 건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
-          </div>
+          <div class="hm-head"><span class="mrk">🛡️</span><h3>정보 신뢰성 확보</h3></div>
+          <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>19만 건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
+          <div class="hm-shot"><img src="assets/shots/hidden-trust-popup.png" alt="우리의 피부 예측, 왜 믿을 수 있나요 팝업"></div>
         </div>
         <div class="row-item" data-rv>
-          <span class="mrk">🧒</span>
-          <div>
-            <h3>연령별 맞춤 + 미성년자 보호</h3>
-            <p>미성년자 대상 서비스에는 <b>보호자 동의 절차 의무화</b> · 연령대별 피부 고민에 최적화된 진단 제공</p>
-            <div class="sub-ex">예) 10대 — 피지·여드름 등 사춘기 특성 중심 · 40대 — 주름·탄력 저하 등 노화 특성 중심</div>
+          <div class="hm-head"><span class="mrk">🧒</span><h3>연령별 맞춤 + 미성년자 보호</h3></div>
+          <p>미성년자 대상 서비스에는 <b>보호자 동의 절차 의무화</b> · 연령대별 피부 고민에 최적화된 진단 제공</p>
+          <div class="sub-ex">예) 10대 — 피지·여드름 등 사춘기 특성 중심 · 40대 — 주름·탄력 저하 등 노화 특성 중심</div>
+          <div class="hm-shot">
+            <img src="assets/shots/hidden-guardian-consent.png" alt="보호자 동의 체크박스">
+            <img src="assets/shots/hidden-teen-traits.png" alt="10대 피부 특성 안내 카드">
           </div>
         </div>
       </div>
@@ -991,6 +1047,10 @@
     <h1 data-rv>서비스 시연</h1>
     <div class="rule" data-rv></div>
     <p data-rv>지금부터 실제 앱 화면으로 My Beauty PT의 핵심 기능을 시연합니다</p>
+    <div class="qr-card" data-rv>
+      <img src="assets/qr-code.png" alt="서비스 체험 QR코드">
+      <span class="qr-label">QR로 바로 체험하기</span>
+    </div>
   </section>
 
 </div>
@@ -1091,6 +1151,22 @@
   }
   window.addEventListener('resize', fit);
   fit(); show(0);
+
+  // cycle "TRAINER / TREATMENT / THERAPY" in the cover badge
+  (function(){
+    const words = ['TRAINER','TREATMENT','THERAPY'];
+    let wIdx = 0;
+    const el = document.getElementById('cycleWord');
+    if(!el) return;
+    setInterval(function(){
+      el.classList.add('cyc-out');
+      setTimeout(function(){
+        wIdx = (wIdx+1) % words.length;
+        el.textContent = words[wIdx];
+        el.classList.remove('cyc-out');
+      }, 350);
+    }, 1800);
+  })();
 </script>
 </body>
 </html>
