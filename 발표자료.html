@@ -6,7 +6,7 @@
 <title>My Beauty PT — 발표자료</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
     /* ---- surfaces (light) ---- */
@@ -38,7 +38,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{
-    font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",-apple-system,system-ui,sans-serif;
+    font-family:"Noto Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",-apple-system,system-ui,sans-serif;
     background:#fff9f6;
     color:var(--ink);
     display:flex;align-items:center;justify-content:center;
@@ -140,7 +140,7 @@
   .rule{width:60px;height:3px;border-radius:4px;background:var(--grad);margin:20px 0 30px;box-shadow:0 0 18px var(--accent-glow)}
 
   .content{flex:1;min-height:0;display:flex;position:relative;z-index:1}
-  .content.col{flex-direction:column;justify-content:flex-start;padding-top:20px}
+  .content.col{flex-direction:column;justify-content:center;padding-top:0}
 
   /* ---- feature bullet list ---- */
   ul.pts{list-style:none;display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.55}
@@ -320,13 +320,13 @@
   /* ============================================================
      FLOW (slide 5)
      ============================================================ */
-  .flow{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:wrap;width:100%;align-self:flex-start}
-  .flow .node{background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:20px 14px;width:156px;text-align:center;display:flex;flex-direction:column;gap:6px}
-  .flow .node .n-ico{font-size:28px}
-  .flow .node .n-t{font-weight:800;font-size:16px;color:var(--ink)}
-  .flow .node .n-d{font-size:13px;color:var(--muted);line-height:1.45}
-  .flow .arw{display:flex;align-items:center;color:var(--accent);font-size:22px;font-weight:800}
-  .flow-note{margin-top:30px;text-align:center;font-size:17px;color:var(--ink-soft);width:100%}
+  .flow{display:flex;align-items:stretch;justify-content:center;gap:12px;flex-wrap:nowrap;width:100%;align-self:center}
+  .flow .node{background:var(--glass-2);border:1px solid var(--line-soft);border-radius:22px;padding:30px 16px;width:176px;min-height:214px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:13px;box-shadow:0 26px 48px -32px rgba(200,90,70,.36)}
+  .flow .node .n-ico{font-size:48px}
+  .flow .node .n-t{font-weight:800;font-size:22px;color:var(--ink)}
+  .flow .node .n-d{font-size:15.5px;color:var(--ink-soft);line-height:1.5}
+  .flow .arw{display:flex;align-items:center;color:var(--accent);font-size:32px;font-weight:800}
+  .flow-note{margin-top:36px;text-align:center;font-size:20px;color:var(--ink-soft);width:100%}
   .flow-note b{color:var(--accent-soft)}
 
   /* ============================================================
@@ -353,6 +353,33 @@
   .panel.future li::before{background:var(--accent-2)}
   .panel li b{color:var(--ink);font-weight:700}
   .need{margin-top:20px;font-size:16px;font-weight:700;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:12px 16px;border-radius:14px}
+
+  /* ---- PERSONA · current-focused (slide 3) ---- */
+  .persona{display:grid;grid-template-columns:1.75fr 1fr;gap:26px;width:100%;align-self:stretch;flex:1;min-height:0;margin-top:2px}
+  .pnow{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line-soft);
+    background:linear-gradient(160deg,#ffffff,#fff6f1);box-shadow:0 34px 66px -34px rgba(200,90,70,.45);display:flex;flex-direction:column}
+  .pnow-photo{position:relative;height:210px;flex:0 0 auto;overflow:hidden}
+  .pnow-photo img{width:100%;height:100%;object-fit:cover;object-position:center 62%;display:block}
+  .pnow-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(25,16,12,.42),transparent 46%)}
+  .pnow-photo .p-badge{position:absolute;left:20px;bottom:16px;font-size:14px;font-weight:800;letter-spacing:.4px;color:#fff;
+    background:var(--accent-deep);padding:8px 17px;border-radius:22px;box-shadow:0 10px 22px -6px rgba(200,60,45,.5);z-index:2}
+  .pnow-body{padding:22px 30px 26px;display:flex;flex-direction:column;flex:1;min-height:0}
+  .pnow-body h3{font-size:25px;font-weight:800;color:var(--ink);margin:0 0 16px;display:flex;align-items:center;gap:11px}
+  .pnow-body h3 span{font-size:15.5px;font-weight:600;color:var(--muted)}
+  .pnow-body ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .pnow-body li{position:relative;padding-left:26px;font-size:19px;color:var(--ink-soft);line-height:1.5}
+  .pnow-body li::before{content:"";position:absolute;left:2px;top:10px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow)}
+  .pnow-body li b{color:var(--ink);font-weight:800}
+  .pnow-body .need{margin-top:auto;font-size:17px;padding:14px 18px}
+
+  .pfuture{align-self:center;border-radius:20px;padding:22px 24px;border:1px dashed var(--line);
+    background:var(--glass-2);opacity:.75;filter:saturate(.9)}
+  .pfuture h3{font-size:17px;font-weight:800;color:var(--ink);margin:0 0 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pfuture h3 span{font-size:12px;font-weight:600;color:var(--muted)}
+  .pfuture ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .pfuture li{position:relative;padding-left:18px;font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+  .pfuture li::before{content:"";position:absolute;left:2px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--accent-2)}
+  .pfuture li b{color:var(--ink);font-weight:700}
 
   /* ============================================================
      DEV LIST — stacked vertically, one full-width row per item
@@ -421,6 +448,31 @@
   .slidenum{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--muted);opacity:.35;z-index:40;letter-spacing:.3px}
   .clickzone{position:fixed;top:0;bottom:80px;width:18%;z-index:30;cursor:pointer}
   #zL{left:0}#zR{right:0}
+
+  /* ============================================================
+     MEGA · pages 20–22 (bigger, centered, icon badges)
+     ============================================================ */
+  .content.mega{align-items:center;justify-content:center}
+  /* 기대효과 — 3 cards */
+  .content.mega .cards3{gap:32px;align-self:center;margin:0}
+  .content.mega .card{padding:40px 30px 36px;border-radius:28px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .content.mega .card .c-ico{width:104px;height:104px;margin:0 0 24px;border-radius:50%;font-size:50px;
+    display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.9),var(--accent-glow));
+    border:1px solid var(--line-soft);box-shadow:0 16px 32px -16px rgba(200,90,70,.5)}
+  .content.mega .card h3{font-size:27px;margin-bottom:14px}
+  .content.mega .card p{font-size:19px;line-height:1.62}
+  .content.mega .card .barnum{display:none}
+  /* 히든미션 / 보완점 — stacked rows */
+  .content.mega .stack{gap:24px;align-self:center;width:100%;margin:0}
+  .content.mega .stack.roomy{gap:30px}
+  .content.mega .row-item{padding:30px 40px;border-radius:26px;gap:28px;align-items:center}
+  .content.mega .mrk{width:88px;height:88px;flex:0 0 auto;border-radius:50%;font-size:44px;
+    display:grid;place-items:center;background:var(--grad);color:#fff;
+    box-shadow:0 16px 32px -12px rgba(255,110,95,.55), inset 0 2px 0 rgba(255,255,255,.4)}
+  .content.mega .row-item h3{font-size:25px;margin-bottom:9px}
+  .content.mega .row-item p{font-size:19px;line-height:1.62}
+  .content.mega .row-item p b{color:var(--accent-soft);font-weight:700}
+  .content.mega .sub-ex{font-size:16.5px;margin-top:12px}
 
   /* ============================================================
      RESPONSIVE / REDUCED MOTION
@@ -526,23 +578,28 @@
     <h1 class="slide-title" data-rv>페르소나 정의</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="cols2">
-        <div class="panel now" data-rv>
-          <h3>🎯 현재 <span>핵심 타깃</span></h3>
-          <ul>
-            <li><b>20대 중후반 직장인 여성</b></li>
-            <li>야근으로 피로 누적, 수면·생활 리듬 불규칙</li>
-            <li>피부관리에 관심은 생겼지만, 무엇을·어떻게 시작할지 막막함</li>
-          </ul>
-          <div class="need">니즈 — "노력은 최소로, 그래도 꾸준히 관리되는" 서비스</div>
+      <div class="persona">
+        <div class="pnow" data-rv>
+          <div class="pnow-photo">
+            <img src="assets/persona-current.png" alt="야근에 지친 직장인">
+            <span class="p-badge">🎯 현재 핵심 타깃</span>
+          </div>
+          <div class="pnow-body">
+            <h3>20대 중후반 직장인 여성 <span>핵심 타깃</span></h3>
+            <ul>
+              <li>야근으로 <b>피로 누적</b>, 수면·생활 리듬 불규칙</li>
+              <li>피부관리에 관심은 생겼지만, <b>무엇을·어떻게</b> 시작할지 막막함</li>
+            </ul>
+            <div class="need">니즈 — "노력은 최소로, 그래도 꾸준히 관리되는" 서비스</div>
+          </div>
         </div>
-        <div class="panel future" data-rv>
+        <div class="pfuture">
           <h3>🚀 미래 <span>확장 시나리오</span></h3>
           <ul>
             <li>기존 사용자의 <b>30대 진입</b>에 따른 라이프사이클 확장</li>
-            <li><b>핵심 타깃(20대 중후반 직장인 여성)</b>에서 파생되는 서브 타깃(결혼 후 남편 등)으로 확장 가능</li>
+            <li>핵심 타깃에서 파생되는 <b>서브 타깃</b>(결혼 후 남편 등)으로 확장</li>
             <li>연령·성별별 고민에 맞춘 진단 커리큘럼으로 대응</li>
-            <li>피부 고민에 예민한 <b>10대 타깃</b>도 타깃 확장 예정</li>
+            <li>피부 고민에 예민한 <b>10대 타깃</b>도 확장 예정</li>
           </ul>
         </div>
       </div>
@@ -879,17 +936,17 @@
     <div class="kicker" data-rv><span class="dot"></span>HIDDEN MISSION</div>
     <h1 class="slide-title" data-rv>히든 미션 대응 방안</h1>
     <div class="rule" data-rv></div>
-    <div class="content center">
+    <div class="content center mega">
       <div class="stack roomy">
         <div class="row-item" data-rv>
-          <span class="step-num r-num">①</span>
+          <span class="mrk">🛡️</span>
           <div>
             <h3>정보 신뢰성 확보</h3>
             <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>19만 건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
           </div>
         </div>
         <div class="row-item" data-rv>
-          <span class="step-num r-num">②</span>
+          <span class="mrk">🧒</span>
           <div>
             <h3>연령별 맞춤 + 미성년자 보호</h3>
             <p>미성년자 대상 서비스에는 <b>보호자 동의 절차 의무화</b> · 연령대별 피부 고민에 최적화된 진단 제공</p>
@@ -905,11 +962,11 @@
     <div class="kicker" data-rv><span class="dot"></span>EXPECTED IMPACT</div>
     <h1 class="slide-title" data-rv>기대효과</h1>
     <div class="rule" data-rv></div>
-    <div class="content">
+    <div class="content mega">
       <div class="cards3">
-        <div class="card" data-rv><div class="c-ico">🙆‍♀️</div><h3>사용자</h3><p>진단·탐색·구매 3단계 리소스를 최소화한 <b>'노력 없는 지속 관리'</b> 경험</p></div>
-        <div class="card" data-rv><div class="c-ico">📈</div><h3>데이터</h3><p>진단 수치·라이프스타일·제품 반응 데이터 축적 → <b>맞춤 정확도·예측 모델 고도화</b></p></div>
-        <div class="card" data-rv><div class="c-ico">🏢</div><h3>사업 (코스맥스)</h3><p>구독 기반 반복 매출 + 실사용 피부 데이터 확보로 <b>제품 개발·추천 선순환</b></p></div>
+        <div class="card" data-rv><div class="c-ico">💆‍♀️</div><h3>사용자</h3><p>진단·탐색·구매 3단계 리소스를 최소화한 <b>'노력 없는 지속 관리'</b> 경험</p></div>
+        <div class="card" data-rv><div class="c-ico">🧠</div><h3>데이터</h3><p>진단 수치·라이프스타일·제품 반응 데이터 축적 → <b>맞춤 정확도·예측 모델 고도화</b></p></div>
+        <div class="card" data-rv><div class="c-ico">💰</div><h3>사업 (코스맥스)</h3><p>구독 기반 반복 매출 + 실사용 피부 데이터 확보로 <b>제품 개발·추천 선순환</b></p></div>
       </div>
     </div>
   </section>
@@ -919,11 +976,11 @@
     <div class="kicker" data-rv><span class="dot"></span>LIMITATIONS</div>
     <h1 class="slide-title" data-rv>보완점 및 한계</h1>
     <div class="rule" data-rv></div>
-    <div class="content">
+    <div class="content mega">
       <div class="stack">
-        <div class="row-item" data-rv><span class="step-num r-num">1</span><div><h3>초기 사용자 확보</h3><p>카메라 배송 등 초기 진입 장벽, 습관 형성 전 이탈 리스크 → <b>온보딩·초기 무료 체험</b>으로 완화</p></div></div>
-        <div class="row-item" data-rv><span class="step-num r-num">2</span><div><h3>진단 정확도</h3><p>촬영 환경(조명·거리) 편차에 따른 신뢰도 한계 → <b>촬영 가이드 UI</b>로 보완</p></div></div>
-        <div class="row-item" data-rv><span class="step-num r-num">3</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
+        <div class="row-item" data-rv><span class="mrk">🚪</span><div><h3>초기 사용자 확보</h3><p>신규 서비스에 대한 <b>신뢰도 확보의 어려움</b>, 습관 형성 전 이탈 리스크 → <b>온보딩·초기 무료 체험</b>으로 완화</p></div></div>
+        <div class="row-item" data-rv><span class="mrk">🎯</span><div><h3>진단 정확도</h3><p><b>카메라 배송 등 초기 진입 장벽</b> · 촬영 환경(조명·거리) 편차에 따른 신뢰도 한계 → <b>촬영 가이드 UI</b>로 보완</p></div></div>
+        <div class="row-item" data-rv><span class="mrk">⏳</span><div><h3>데이터 축적 기간</h3><p>개인화 정확도가 사용 기간에 비례 → 초기에는 예측/추천 정밀도가 낮을 수 있음</p></div></div>
       </div>
     </div>
   </section>
