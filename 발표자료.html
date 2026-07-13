@@ -242,6 +242,38 @@
   .imcard .cap .d{font-size:16px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
   .tag{font-size:12px;font-weight:800;letter-spacing:.5px;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:4px 11px;border-radius:20px}
 
+  /* ---- MIND MAP (slide 2 · 기획 배경) · left hub → right branches ---- */
+  .mindmap{position:relative;flex:1;min-height:0;width:100%;align-self:stretch;margin-top:-6px}
+  .mm-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+  .mm-lines path{fill:none;stroke-width:5;stroke-linecap:round;opacity:.92}
+  /* soft glow + concentric orbit rings behind the core (left) */
+  .mm-glow{position:absolute;left:16%;top:50%;transform:translate(-50%,-50%);width:372px;height:372px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,125,114,.24),transparent 66%);z-index:0;pointer-events:none}
+  .mm-orbit{position:absolute;left:16%;top:50%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none}
+  .mm-orbit.o1{width:240px;height:240px;border:1.5px dashed rgba(255,125,114,.40)}
+  .mm-orbit.o2{width:300px;height:300px;border:1.5px solid rgba(255,125,114,.13)}
+  .mm-core{position:absolute;left:16%;top:50%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;
+    background:var(--grad);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    box-shadow:0 34px 68px -14px rgba(255,110,95,.65), inset 0 3px 0 rgba(255,255,255,.45), inset 0 -18px 34px rgba(190,60,45,.28);z-index:4}
+  .mm-core b{font-size:62px;font-weight:900;letter-spacing:-2.5px;line-height:1;text-shadow:0 4px 14px rgba(150,40,30,.3)}
+  .mm-core span{font-size:12.5px;font-weight:800;letter-spacing:3px;opacity:.92;margin-top:8px}
+  /* branch nodes: circular photo + text, color-coded, fanned to the right */
+  .mm-node{position:absolute;width:58%;transform:translateY(-50%);display:flex;align-items:center;gap:20px;z-index:3;
+    background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,251,249,.84));border:1px solid rgba(120,60,50,.07);
+    border-radius:72px;padding:16px 30px 16px 16px;
+    box-shadow:0 28px 52px -30px rgba(200,90,70,.5), inset 0 1px 0 rgba(255,255,255,.92)}
+  .mm-node .mm-ph{width:122px;height:122px;border-radius:50%;overflow:hidden;flex:0 0 auto;
+    box-shadow:0 0 0 5px #fff, 0 0 0 8px var(--c), 0 16px 30px -12px color-mix(in srgb,var(--c) 55%,transparent)}
+  .mm-node .mm-ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
+  .mm-node .mm-tag{display:inline-block;font-size:14.5px;font-weight:800;letter-spacing:.5px;color:var(--c);
+    background:color-mix(in srgb,var(--c) 13%,#fff);border:1px solid color-mix(in srgb,var(--c) 32%,transparent);
+    padding:6px 15px;border-radius:20px;margin-bottom:10px}
+  .mm-node p{font-size:19.5px;line-height:1.48;color:var(--ink-soft);margin:0;font-weight:500}
+  .mm-node p b{color:var(--c);font-weight:800}
+  .mm-node.n1{left:34%;top:17%;--c:#F5713F}
+  .mm-node.n2{left:36%;top:50%;--c:#E0930F}
+  .mm-node.n3{left:34%;top:83%;--c:#EC5F86}
+
   /* ============================================================
      FEATURE (phone + text)
      ============================================================ */
@@ -263,6 +295,20 @@
   .phone-screen .ph-t{font-weight:800;color:var(--accent-deep);font-size:20px}
   .phone-screen .ph-s{font-size:14.5px;color:#9a8f92;line-height:1.5;font-weight:500}
   .phone-screen .ph-badge{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:var(--accent-deep);padding:5px 13px;border-radius:20px}
+
+  /* ---- real app screenshots (phone frame removed, screen only) ---- */
+  .feat.media{grid-template-columns:auto 1fr;gap:50px}
+  .shots{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto}
+  .shots.stack{flex-direction:column;gap:16px}
+  .shot{
+    display:block;border-radius:22px;background:#fff;
+    border:1px solid rgba(120,60,50,.10);
+    box-shadow:0 44px 74px -30px rgba(200,90,70,.46), 0 10px 24px -12px rgba(30,15,15,.20), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .shot.tall{height:436px;width:auto}    /* single full-height screen */
+  .shot.duo{height:400px;width:auto}     /* two full-height screens in a row */
+  .shot.trio{height:344px;width:auto}    /* three full-height screens in a row */
+  .shot.wide{width:256px;height:auto}    /* short landscape fragment (stacked) */
 
   .feat-text{display:flex;flex-direction:column}
   .feat-text .grp-tag{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:800;letter-spacing:2.6px;color:var(--accent-soft);margin-bottom:22px;align-self:flex-start}
@@ -451,18 +497,27 @@
     <h1 class="slide-title" data-rv>기획 배경</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="imgrow">
-        <div class="imcard" data-rv>
-          <img src="assets/tired-worker.png" alt="바쁜 직장인">
-          <div class="cap"><div class="t"><span class="tag">귀찮음</span></div><div class="d">야근에 지친 바쁜 직장인 — 관리에 쓸 시간·에너지가 없다</div></div>
+      <div class="mindmap" data-rv>
+        <div class="mm-glow"></div>
+        <span class="mm-orbit o2"></span>
+        <span class="mm-orbit o1"></span>
+        <svg class="mm-lines" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M160,250 C250,250 320,86 407,86" stroke="#F5713F"/>
+          <path d="M160,250 L427,250" stroke="#E0930F"/>
+          <path d="M160,250 C250,250 320,414 407,414" stroke="#EC5F86"/>
+        </svg>
+        <div class="mm-core"><b>Why?</b><span>기획 배경</span></div>
+        <div class="mm-node n1">
+          <div class="mm-ph"><img src="assets/tired-worker.png" alt="바쁜 직장인"></div>
+          <div class="mm-tx"><span class="mm-tag">귀찮음</span><p>야근에 지친 바쁜 직장인 — 관리에 쓸 <b>시간·에너지</b>가 없다</p></div>
         </div>
-        <div class="imcard" data-rv>
-          <img src="assets/big-data.png" alt="데이터 예측">
-          <div class="cap"><div class="t"><span class="tag">신뢰</span></div><div class="d">데이터 학습 기반 미래 예측 모델로 신뢰 확보</div></div>
+        <div class="mm-node n2">
+          <div class="mm-ph"><img src="assets/big-data.png" alt="데이터 예측"></div>
+          <div class="mm-tx"><span class="mm-tag">신뢰</span><p>데이터 학습 기반 <b>미래 예측 모델</b>로 신뢰 확보</p></div>
         </div>
-        <div class="imcard" data-rv>
-          <img src="assets/sun-damage.png" alt="선크림 예시">
-          <div class="cap"><div class="t"><span class="tag">현실감</span></div><div class="d">선크림 예시 — 누적된 관리 차이가 5년·10년 뒤를 가른다</div></div>
+        <div class="mm-node n3">
+          <div class="mm-ph"><img src="assets/sun-damage.png" alt="선크림 예시"></div>
+          <div class="mm-tx"><span class="mm-tag">현실감</span><p>선크림 예시 — 누적된 관리 차이가 <b>5년·10년 뒤</b>를 가른다</p></div>
         </div>
       </div>
     </div>
@@ -593,8 +648,8 @@
     <h1 class="slide-title" data-rv>촬영 외 모든 진단은 음성 설문으로</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🎤</div><div class="ph-t">음성 진단</div><div class="ph-s">"최근 생활습관을<br>목소리로 여쭤볼게요"</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s01-voice.png" alt="음성 진단 화면"></div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -612,8 +667,8 @@
     <h1 class="slide-title" data-rv>정해진 시간에 자동으로 진단 ON</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">⏰</div><div class="ph-t">자동 진단 시간</div><div class="ph-s">매일 같은 시간<br>자동 실행</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s02-time.png" alt="정해진 시간 자동 진단 설정 화면"></div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -631,8 +686,12 @@
     <h1 class="slide-title" data-rv>내 피부에 맞는 제품을 매주 자동 추천</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💡</div><div class="ph-t">맞춤 추천</div><div class="ph-s">데이터 근거 성분<br>+ 사용 TIP</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv>
+          <img class="shot trio" src="assets/shots/s03a-reco-card.png" alt="맞춤 제품 추천 화면">
+          <img class="shot trio" src="assets/shots/s03b-reco-detail.png" alt="추천 성분 근거 화면">
+          <img class="shot trio" src="assets/shots/s03c-reco-tip.png" alt="이번주 사용 TIP 화면">
+        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -651,8 +710,11 @@
     <h1 class="slide-title" data-rv>추천 제품은 매주 자동 배송</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📦</div><div class="ph-t">자동 배송</div><div class="ph-s">진단만 하면<br>제품은 알아서 도착</div></div></div>
+      <div class="feat media">
+        <div class="shots stack" data-rv>
+          <img class="shot wide" src="assets/shots/s04a-delivery.png" alt="이번주 배송 정보 화면">
+          <img class="shot wide" src="assets/shots/s04b-history.png" alt="최근 사용 내역 화면">
+        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -680,8 +742,8 @@
     <h1 class="slide-title" data-rv>정해진 시간에 자동 앱 ON</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🔔</div><div class="ph-t">진단 시간 변경</div><div class="ph-s">내 생활 패턴에 맞게<br>언제든 재설정</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s05-time2.png" alt="진단 시간 변경 화면"></div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -699,8 +761,11 @@
     <h1 class="slide-title" data-rv>주차별 제품 배송 & 리포트 제공</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">📊</div><div class="ph-t">주간 리포트</div><div class="ph-s">지난주 대비<br>내 피부 변화</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv>
+          <img class="shot duo" src="assets/shots/s06a-report-trend.png" alt="주차별 추이 리포트 화면">
+          <img class="shot duo" src="assets/shots/s06b-report-score.png" alt="주차 리포트 점수 화면">
+        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -719,8 +784,11 @@
     <h1 class="slide-title" data-rv>포인트 제도 및 환급 제도</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">🏆</div><div class="ph-t">포인트 · 랭킹</div><div class="ph-s">출석 · 관리로<br>포인트 적립</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv>
+          <img class="shot duo" src="assets/shots/s07a-point-rank.png" alt="포인트 경쟁 랭킹 화면">
+          <img class="shot duo" src="assets/shots/s07b-point-att.png" alt="포인트 적립·출석 현황 화면">
+        </div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
@@ -740,8 +808,8 @@
     <h1 class="slide-title" data-rv>커뮤니티 서비스</h1>
     <div class="rule" data-rv></div>
     <div class="content">
-      <div class="feat">
-        <div class="phone" data-rv><div class="phone-screen"><div class="ph-badge">화면 캡처 예정</div><div class="ico">💬</div><div class="ph-t">고민별 채팅방</div><div class="ph-s">비슷한 고민끼리<br>정보·경험 공유</div></div></div>
+      <div class="feat media">
+        <div class="shots" data-rv><img class="shot tall" src="assets/shots/s08-community.png" alt="고민별 채팅방 커뮤니티 화면"></div>
         <div class="feat-text">
           <span class="grp-tag" data-rv>SOLUTION</span>
           <ul class="pts">
