@@ -131,9 +131,10 @@
   .kicker{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;letter-spacing:2.4px;color:var(--accent-soft);text-transform:uppercase}
   .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
   h1.slide-title{font-size:46px;font-weight:800;letter-spacing:-.6px;margin:16px 0 4px;line-height:1.16;color:var(--ink)}
-  h1.slide-title + .kw-badge{margin-top:16px}
-  .kw-badge{display:inline-flex;align-self:flex-start;align-items:center;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;background:var(--grad);padding:6px 15px;border-radius:20px;margin:16px 0 0;box-shadow:0 12px 22px -10px rgba(255,110,95,.55)}
-  .kw-badge + h1.slide-title{margin-top:12px}
+  /* .with-kw: keyword badge sits inline right after the title text, same line */
+  h1.slide-title.with-kw{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+  h1.slide-title.with-kw .tt{min-width:0}
+  .kw-badge{display:inline-flex;align-self:center;align-items:center;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;background:var(--grad);padding:6px 15px;border-radius:20px;box-shadow:0 12px 22px -10px rgba(255,110,95,.55)}
   .subhead{font-size:22px;color:var(--ink-soft);font-weight:500;margin-top:6px;letter-spacing:.1px}
   .subhead b{color:var(--accent-soft);font-weight:700}
   .rule{width:60px;height:3px;border-radius:4px;background:var(--grad);margin:20px 0 30px;box-shadow:0 0 18px var(--accent-glow)}
@@ -142,16 +143,15 @@
   .content.col{flex-direction:column;justify-content:flex-start;padding-top:20px}
 
   /* ---- feature bullet list ---- */
-  ul.pts{list-style:none;display:flex;flex-direction:column;gap:16px;font-size:18px;line-height:1.55}
+  ul.pts{list-style:none;display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.55}
   ul.pts li{
     position:relative;color:var(--ink-soft);
-    padding:21px 26px;
-    border-radius:20px;
-    background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,252,250,.85));
-    backdrop-filter:blur(12px) saturate(150%);
-    -webkit-backdrop-filter:blur(12px) saturate(150%);
-    border:1px solid rgba(120,60,50,.06);
-    box-shadow:0 26px 50px -36px rgba(200,90,70,.30), inset 0 1px 0 rgba(255,255,255,.95);
+    padding:19px 24px 19px 22px;
+    border-radius:14px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--accent);
+    box-shadow:0 14px 30px -24px rgba(200,90,70,.32);
   }
   ul.pts b{color:var(--accent-deep);font-weight:800}
 
@@ -642,8 +642,7 @@
   <!-- 7 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
-    <span class="kw-badge" data-rv>Simple</span>
-    <h1 class="slide-title" data-rv>음성 대화형 진단</h1>
+    <h1 class="slide-title with-kw" data-rv><span class="tt">음성 대화형 진단</span><span class="kw-badge">Simple</span></h1>
     <div class="subhead" data-rv>촬영 외 모든 진단은 음성 설문으로</div>
     <div class="rule" data-rv></div>
     <div class="content">
@@ -663,8 +662,7 @@
   <!-- 8 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
-    <span class="kw-badge" data-rv>Smart</span>
-    <h1 class="slide-title" data-rv>자동 진단 스케줄</h1>
+    <h1 class="slide-title with-kw" data-rv><span class="tt">자동 진단 스케줄</span><span class="kw-badge">Smart</span></h1>
     <div class="subhead" data-rv>매일 설정해둔 같은 시간에 자동 진단 ON</div>
     <div class="rule" data-rv></div>
     <div class="content">
@@ -684,8 +682,7 @@
   <!-- 9 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
-    <span class="kw-badge" data-rv>Smart</span>
-    <h1 class="slide-title" data-rv>데이터 기반 맞춤 제품 추천</h1>
+    <h1 class="slide-title with-kw" data-rv><span class="tt">데이터 기반 맞춤 제품 추천</span><span class="kw-badge">Smart</span></h1>
     <div class="subhead" data-rv>피부 진단 기반 맞춤형 제품을 매주 자동 추천</div>
     <div class="rule" data-rv></div>
     <div class="content">
@@ -710,8 +707,7 @@
   <!-- 10 -->
   <section class="slide">
     <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
-    <span class="kw-badge" data-rv>Speed</span>
-    <h1 class="slide-title" data-rv>자동 문앞 배송</h1>
+    <h1 class="slide-title with-kw" data-rv><span class="tt">자동 문앞 배송</span><span class="kw-badge">Speed</span></h1>
     <div class="subhead" data-rv>주간 추천 제품은 매주 정해진 요일에 자동 배송</div>
     <div class="rule" data-rv></div>
     <div class="content">
