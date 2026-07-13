@@ -131,6 +131,9 @@
   .kicker{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:700;letter-spacing:2.4px;color:var(--accent-soft);text-transform:uppercase}
   .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
   h1.slide-title{font-size:46px;font-weight:800;letter-spacing:-.6px;margin:16px 0 4px;line-height:1.16;color:var(--ink)}
+  h1.slide-title + .kw-badge{margin-top:16px}
+  .kw-badge{display:inline-flex;align-self:flex-start;align-items:center;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;background:var(--grad);padding:6px 15px;border-radius:20px;margin:16px 0 0;box-shadow:0 12px 22px -10px rgba(255,110,95,.55)}
+  .kw-badge + h1.slide-title{margin-top:12px}
   .subhead{font-size:22px;color:var(--ink-soft);font-weight:500;margin-top:6px;letter-spacing:.1px}
   .subhead b{color:var(--accent-soft);font-weight:700}
   .rule{width:60px;height:3px;border-radius:4px;background:var(--grad);margin:20px 0 30px;box-shadow:0 0 18px var(--accent-glow)}
@@ -167,7 +170,7 @@
   .brand-badge{font-size:14px;font-weight:800;letter-spacing:3px;color:var(--accent-soft)}
   .cover h1{font-size:72px;font-weight:900;letter-spacing:-1.5px;line-height:1.02;margin:14px 0 6px}
   .cover h1 .en{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .cover .ko{font-size:23px;font-weight:500;color:var(--ink-soft);margin-bottom:26px;letter-spacing:.2px}
+  .cover .ko{font-size:19px;font-weight:600;color:var(--accent-soft);margin-bottom:26px;letter-spacing:.4px}
   .tagline{font-size:24px;font-weight:700;color:var(--ink);border-left:3px solid var(--accent);padding-left:20px;line-height:1.5}
   .oneliner{margin-top:22px;font-size:18.5px;color:var(--ink-soft);line-height:1.55}
   .oneliner b{color:var(--accent-soft);font-weight:700}
@@ -177,7 +180,7 @@
   .cover-left{display:flex;flex-direction:column;justify-content:center;grid-column:1}
   .cover-right{position:relative;grid-column:2}
   .app-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .cover-phone{width:280px;height:560px}
+  .phone.cover-phone{width:280px;height:560px}
 
   /* app home screen inside the phone */
   .phone-screen.app-screen{align-items:stretch;justify-content:flex-start;gap:14px;text-align:left;padding:40px 20px 20px;background:linear-gradient(180deg,#ffffff 0%,#fff3ee 100%)}
@@ -352,28 +355,22 @@
   .need{margin-top:20px;font-size:16px;font-weight:700;color:var(--accent-soft);background:var(--accent-glow);border:1px solid var(--line-soft);padding:12px 16px;border-radius:14px}
 
   /* ============================================================
-     DEV LIST
+     DEV LIST — stacked vertically, one full-width row per item
      ============================================================ */
-  .dev-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;flex:1;min-height:0;align-self:stretch;margin-top:4px;align-items:stretch}
-  .dev-list > .dev-item{min-height:100%}
-  .dev-list > .dev-item > div:last-child{display:flex;flex-direction:column;flex:1;min-height:0}
-  .dev-list > .dev-item .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
-  .dev-list > .dev-item .mini-cell{justify-content:center;padding:12px 12px}
-  .dev-list > .dev-item .mc-row{flex-direction:column;align-items:stretch;gap:8px}
-  .dev-list > .dev-item .mc-track{flex:none;width:100%;height:6px}
-  .dev-list > .dev-item .mc-val{align-self:center;font-size:12px;margin-top:2px}
+  .dev-list{display:flex;flex-direction:column;gap:14px;width:100%;flex:1;min-height:0;align-self:stretch;margin-top:2px;justify-content:center}
+  .dev-list > .dev-item > div:last-child{display:flex;flex-direction:column}
   .dev-item{display:flex;gap:20px;align-items:flex-start;background:var(--glass-2);border:1px solid var(--line-soft);border-radius:18px;padding:18px 26px}
   .dev-item .d-ico{font-size:28px;flex-shrink:0;width:58px;height:58px;border-radius:16px;background:var(--accent-glow);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center}
   .dev-item h3{font-size:20px;font-weight:800;margin-bottom:5px;color:var(--ink)}
   .dev-item p{font-size:16.5px;color:var(--ink-soft);line-height:1.6}
   .dev-item p b{color:var(--accent-soft);font-weight:700}
-  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-  .mini-cell{background:rgba(255,255,255,.32);border:1px solid var(--line-soft);border-radius:12px;padding:9px 13px;display:flex;flex-direction:column;gap:5px}
-  .mini-cell .mc-name{font-size:10.5px;color:var(--ink-soft);font-weight:600;line-height:1.3}
-  .mini-cell .mc-row{display:flex;align-items:center;gap:8px}
-  .mini-cell .mc-track{flex:1;height:5px;border-radius:3px;background:rgba(120,60,50,.10)}
-  .mini-cell .mc-fill{height:100%;width:0;border-radius:0 3px 3px 0;background:var(--grad);transition:width 1.1s var(--ease)}
-  .mini-cell .mc-val{font-size:10.5px;font-weight:800;color:var(--accent-deep);white-space:nowrap;flex-shrink:0}
+  /* data-volume tiles: equal weight, no proportional bars — a smaller absolute
+     count (e.g. 10,000건) must read as substantial, not "the short bar" */
+  .mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+  .mini-cell{background:rgba(255,255,255,.4);border:1px solid var(--line-soft);border-radius:14px;padding:12px 10px 11px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+  .mini-cell .mc-name{font-size:11px;color:var(--ink-soft);font-weight:600;line-height:1.32;min-height:2.6em}
+  .mini-cell .mc-val{font-size:19px;font-weight:900;color:var(--accent-deep);white-space:nowrap}
+  .mini-cell .mc-val small{font-size:12px;font-weight:700;color:var(--ink-soft);margin-left:1px}
   /* mini-cell gets its own pop-in reveal, distinct from the slide's fade-up */
   .slide.active .mini-cell{animation:cellPop .48s var(--ease) both;animation-delay:var(--rvd,0s)}
   @keyframes cellPop{
@@ -453,7 +450,7 @@
         <div class="logo-mark" data-rv><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 8C50 8 20 44 20 64a30 30 0 0 0 60 0C80 44 50 8 50 8Z"/></svg></div>
         <div class="brand-badge" data-rv>✦ PERSONAL BEAUTY TRAINER</div>
         <h1 data-rv><span class="en">My Beauty PT</span></h1>
-        <div class="ko" data-rv>퍼스널 뷰티 트레이너</div>
+        <div class="ko" data-rv>Personal Beauty Trainer / Treatment / Therapy</div>
         <div class="tagline" data-rv>몰라도 돼요. 안 해도 돼요.<br>— My Beauty PT가 대신 다 챙겨드릴게요.</div>
         <div class="oneliner" data-rv>매일 진단부터 맞춤 제품 배송까지, 알아서 챙겨주는 <b>AI 뷰티 트레이너</b></div>
       </div>
@@ -604,19 +601,19 @@
             <div class="mini-grid">
               <div class="mini-cell" data-rv>
                 <span class="mc-name">한국어 성능이 개선된 초거대AI 언어모델 개발 및 데이터</span>
-                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="100"></div></div><span class="mc-val"><span class="mc-num" data-target="3361404">0</span>건</span></div>
+                <span class="mc-val"><span class="mc-num" data-target="3361404">0</span><small>건</small></span>
               </div>
               <div class="mini-cell" data-rv>
                 <span class="mc-name">한국인 피부상태 측정 데이터</span>
-                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="48"></div></div><span class="mc-val"><span class="mc-num" data-target="125424">0</span>건</span></div>
+                <span class="mc-val"><span class="mc-num" data-target="125424">0</span><small>건</small></span>
               </div>
               <div class="mini-cell" data-rv>
                 <span class="mc-name">안면 인식 에이징(aging) 이미지 데이터</span>
-                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="33.5"></div></div><span class="mc-val"><span class="mc-num" data-target="50250">0</span>건</span></div>
+                <span class="mc-val"><span class="mc-num" data-target="50250">0</span><small>건</small></span>
               </div>
               <div class="mini-cell" data-rv>
                 <span class="mc-name">스킨케어 성분-효능 추천 데이터</span>
-                <div class="mc-row"><div class="mc-track"><div class="mc-fill" data-w="8"></div></div><span class="mc-val"><span class="mc-num" data-target="10000">0</span>건</span></div>
+                <span class="mc-val"><span class="mc-num" data-target="10000">0</span><small>건</small></span>
               </div>
             </div>
           </div>
@@ -637,15 +634,17 @@
   <section class="slide divider">
     <div class="ghost">01</div>
     <div class="kicker" data-rv><span class="dot"></span>SOLUTION 01</div>
-    <h1 data-rv>① 귀찮음 해소</h1>
+    <h1 data-rv>① '번거로움'을 없앤다</h1>
     <div class="rule" data-rv></div>
     <p data-rv>진단·탐색·구매·관리의 모든 단계에서 사용자의 노력을 최소화한다<br>피부 관리를 매일 지킬 수 있는 하나의 자동화된 루틴으로 만든다</p>
   </section>
 
   <!-- 7 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>촬영 외 모든 진단은 음성 설문으로</h1>
+    <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
+    <span class="kw-badge" data-rv>Simple</span>
+    <h1 class="slide-title" data-rv>음성 대화형 진단</h1>
+    <div class="subhead" data-rv>촬영 외 모든 진단은 음성 설문으로</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -663,8 +662,10 @@
 
   <!-- 8 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>정해진 시간에 자동으로 진단 ON</h1>
+    <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
+    <span class="kw-badge" data-rv>Smart</span>
+    <h1 class="slide-title" data-rv>자동 진단 스케줄</h1>
+    <div class="subhead" data-rv>매일 설정해둔 같은 시간에 자동 진단 ON</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -682,8 +683,10 @@
 
   <!-- 9 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>내 피부에 맞는 제품을 매주 자동 추천</h1>
+    <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
+    <span class="kw-badge" data-rv>Smart</span>
+    <h1 class="slide-title" data-rv>데이터 기반 맞춤 제품 추천</h1>
+    <div class="subhead" data-rv>피부 진단 기반 맞춤형 제품을 매주 자동 추천</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -706,8 +709,10 @@
 
   <!-- 10 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>① 귀찮음 해소 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>추천 제품은 매주 자동 배송</h1>
+    <div class="kicker" data-rv><span class="dot"></span>① '번거로움'을 없앤다 · 세부 기능</div>
+    <span class="kw-badge" data-rv>Speed</span>
+    <h1 class="slide-title" data-rv>자동 문앞 배송</h1>
+    <div class="subhead" data-rv>주간 추천 제품은 매주 정해진 요일에 자동 배송</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -731,15 +736,16 @@
   <section class="slide divider">
     <div class="ghost">02</div>
     <div class="kicker" data-rv><span class="dot"></span>SOLUTION 02</div>
-    <h1 data-rv>② 지속적인 동기 · 락인</h1>
+    <h1 data-rv>② 이탈을 막는 습관을 설계한다</h1>
     <div class="rule" data-rv></div>
     <p data-rv>매일 진단과 관리를 지속해야 할 강제적/선택적 동기를 제공한다</p>
   </section>
 
   <!-- 11 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>정해진 시간에 자동 앱 ON</h1>
+    <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>진단의 루틴화</h1>
+    <div class="subhead" data-rv>진단 시간 설정 시 정해진 시간에 자동 앱 작동</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -757,8 +763,9 @@
 
   <!-- 12 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>주차별 제품 배송 & 리포트 제공</h1>
+    <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>주간 맞춤 제품 및 리포트 발송</h1>
+    <div class="subhead" data-rv>매주 맞춤 제품 배송 및 진단 리포트 발송</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -780,8 +787,8 @@
 
   <!-- 13 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>포인트 제도 및 환급 제도</h1>
+    <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>포인트 · 환급 제도</h1>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat media">
@@ -804,7 +811,7 @@
 
   <!-- 14 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>② 동기·락인 · 세부 기능</div>
+    <div class="kicker" data-rv><span class="dot"></span>② 이탈을 막는 습관을 설계한다 · 세부 기능</div>
     <h1 class="slide-title" data-rv>커뮤니티 서비스</h1>
     <div class="rule" data-rv></div>
     <div class="content">
@@ -825,15 +832,16 @@
   <section class="slide divider">
     <div class="ghost">03</div>
     <div class="kicker" data-rv><span class="dot"></span>SOLUTION 03</div>
-    <h1 data-rv>③ 관리 필요성의 현실감</h1>
+    <h1 data-rv>③ 변화의 필요성을 눈으로 확인한다</h1>
     <div class="rule" data-rv></div>
     <p data-rv>보이지 않던 피부 상태와 변화를 눈으로 체감하게 만든다</p>
   </section>
 
   <!-- 15 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>③ 현실감 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>직관적인 시각 분석 자료</h1>
+    <div class="kicker" data-rv><span class="dot"></span>③ 변화의 필요성을 눈으로 확인한다 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>정밀 분석 시각자료</h1>
+    <div class="subhead" data-rv>직관적인 부위별 / 항목별 시각 분석 자료 제공</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
@@ -852,8 +860,9 @@
 
   <!-- 16 -->
   <section class="slide">
-    <div class="kicker" data-rv><span class="dot"></span>③ 현실감 · 세부 기능</div>
-    <h1 class="slide-title" data-rv>피부 관리 전후 비교 이미지</h1>
+    <div class="kicker" data-rv><span class="dot"></span>③ 변화의 필요성을 눈으로 확인한다 · 세부 기능</div>
+    <h1 class="slide-title" data-rv>관리 전후 비교 이미지</h1>
+    <div class="subhead" data-rv>피부 관리 전후 비교 이미지를 시각적으로 제공</div>
     <div class="rule" data-rv></div>
     <div class="content">
       <div class="feat">
@@ -880,7 +889,7 @@
           <span class="step-num r-num">①</span>
           <div>
             <h3>정보 신뢰성 확보</h3>
-            <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>10,000건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
+            <p>진단 결과·추천에 대해 <b>팝업 공지로 근거 제시</b>(관련 논문·기사 등) · 약 <b>19만 건 규모</b> 데이터 학습으로 진단·예측 신뢰도 확보</p>
           </div>
         </div>
         <div class="row-item" data-rv>
@@ -979,23 +988,14 @@
     requestAnimationFrame(tick);
   }
 
-  // grow each mini-cell's bar + count its number up, staggered to match its pop-in delay
+  // count each mini-cell's number up, staggered to match its pop-in delay
   function animateDataBars(slide){
     slide.querySelectorAll('.mini-cell').forEach(cell=>{
-      const fill = cell.querySelector('.mc-fill');
       const num = cell.querySelector('.mc-num');
+      if(!num) return;
       const delay = (parseFloat(getComputedStyle(cell).animationDelay) || 0) * 1000;
-      if(fill){
-        fill.style.transition = 'none';
-        fill.style.width = '0%';
-        void fill.offsetWidth;      // force reflow so the reset isn't itself animated
-        fill.style.transition = '';
-      }
-      if(num) num.textContent = '0';
-      setTimeout(()=>{
-        if(fill) fill.style.width = fill.dataset.w + '%';
-        if(num) countUp(num, 1100);
-      }, delay);
+      num.textContent = '0';
+      setTimeout(()=>countUp(num, 1100), delay);
     });
   }
 
